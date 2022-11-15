@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Tool.Platform", "Standard.Tool.Platform\Standard.Tool.Platform.csproj", "{3385E79A-F256-4C8D-BEC2-1789F0592A4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standard.Tool.Platform", "Standard.Tool.Platform\Standard.Tool.Platform.csproj", "{3385E79A-F256-4C8D-BEC2-1789F0592A4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{2A533BD6-94CA-4E3D-9732-658FBEFC023F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C9F1EFCF-5F9D-46C7-80C6-0DFF3298A168}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{61403449-FCEA-404D-B35D-CF4AE65DD95D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{10F2C108-0427-40A9-8543-3BB6086D48BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Tool.Platform.Auth", "Standard.Tool.Platform.Auth\Standard.Tool.Platform.Auth.csproj", "{A0588280-A6FF-42BA-9A1F-EA119EBC14EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,17 @@ Global
 		{3385E79A-F256-4C8D-BEC2-1789F0592A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3385E79A-F256-4C8D-BEC2-1789F0592A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3385E79A-F256-4C8D-BEC2-1789F0592A4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0588280-A6FF-42BA-9A1F-EA119EBC14EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0588280-A6FF-42BA-9A1F-EA119EBC14EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0588280-A6FF-42BA-9A1F-EA119EBC14EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0588280-A6FF-42BA-9A1F-EA119EBC14EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3385E79A-F256-4C8D-BEC2-1789F0592A4D} = {2A533BD6-94CA-4E3D-9732-658FBEFC023F}
+		{A0588280-A6FF-42BA-9A1F-EA119EBC14EE} = {C9F1EFCF-5F9D-46C7-80C6-0DFF3298A168}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {184CE8A4-D622-4C2C-AB83-C823571980B1}
