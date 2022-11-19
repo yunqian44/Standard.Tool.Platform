@@ -38,8 +38,14 @@
         
 
         <Border Background="#FFFFFF" Grid.Column="1" CornerRadius="0 10 10 0">
-            
-            
-        </Border>
+            <StackPanel>
+                <TextBlock Text="Sign In App" Style="{StaticResource titleText}" Foreground="#3AB19B"/>
+                <StackPanel>
+                    <Button>
+                        <Image/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>   
     </Grid>
 </Window>
