@@ -28,14 +28,15 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#E8E8E8"/>
-                <Setter Property="Foreground" Value="#D9D9D9"/>
+                <Setter Property="Foreground" Value="DimGray"/>
             </Trigger>
 
             <Trigger Property="IsMouseCaptured" Value="True">
                 <Setter Property="Background" Value="#D9D9D9"/>
-                <Setter Property="Foreground" Value="#E8E8E8"/>
+                <Setter Property="Foreground" Value="DimGray"/>
             </Trigger>
         </Style.Triggers>
     </Style>
+    
 </ResourceDictionary>
     
