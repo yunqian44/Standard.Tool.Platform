@@ -11,6 +11,8 @@ namespace Standard.Tool.Platform.CommonPage
     public class LoginPageViewMode:ObservableObject
     {
 
+        #region 属性
+
         #region 用户名
         private string _userName;
         public string UserName
@@ -35,6 +37,7 @@ namespace Standard.Tool.Platform.CommonPage
                 RaisePropertyChanged("Password");
             }
         }
+        #endregion 
         #endregion
 
         public LoginPageViewMode()
@@ -43,21 +46,29 @@ namespace Standard.Tool.Platform.CommonPage
         }
 
 
+        #region 方法
+
         #region 登录操作
         internal void SignInExecute()
         {
-
+            if ("admin".Equals(UserName) && "1111".Equals(Password))
+            {
+                MainWindow mainPage = new MainWindow();
+                mainPage.ShowDialog();
+            }
         }
 
         internal bool CanSignInExecute()
         {
-            return true;
+            return !string.IsNullOrWhiteSpace(UserName)
+                &&!string.IsNullOrWhiteSpace(Password);
         }
 
         internal ICommand SignIn
         {
             get { return new RelayCommand(SignInExecute, CanSignInExecute); }
-        } 
+        }
+        #endregion 
         #endregion
     }
 }

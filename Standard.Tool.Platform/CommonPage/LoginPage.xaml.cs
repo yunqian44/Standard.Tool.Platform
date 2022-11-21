@@ -19,9 +19,21 @@ namespace Standard.Tool.Platform.CommonPage
     /// </summary>
     public partial class LoginPage : Window
     {
+
         public LoginPage()
         {
             InitializeComponent();
+            this.DataContext = new LoginPageViewMode();
+        }
+
+        private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtEmail.Focus();
+        }
+
+        private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtPassword.Focus();
         }
     }
 }

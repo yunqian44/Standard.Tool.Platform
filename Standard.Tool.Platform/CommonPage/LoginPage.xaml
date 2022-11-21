@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Standard.Tool.Platform.CommonPage"
         mc:Ignorable="d"
-        Title="LoginPage" Height="520" Width="800">
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent"
+        Title="LoginPage" Height="500" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
-
+        <Image Source="/Image/closed.png" Grid.Column="1" Panel.ZIndex="1" Style="{StaticResource imgClose}"/>
         <Border CornerRadius="10 0 0 10" Grid.Column="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,0.5">
@@ -58,8 +60,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Height="20"/>
-                        <TextBlock x:Name="textEmail" Text="Email" Style="{StaticResource textHint}"/>
+                        <Image Height="20" Source="/Image/email.png"/>
+                        <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown"  Text="Email" Style="{StaticResource textHint}"/>
                         <TextBox x:Name="txtEmail" Style="{StaticResource textBox}"  Text="{Binding UserName}" />
 
                     </Grid>
@@ -72,9 +74,10 @@
                             <ColumnDefinition Width="318" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Height="20"/>
-                        <TextBlock x:Name="textPassword" Text="Password" Style="{StaticResource textHint}"/>
-                        <PasswordBox x:Name="txtPassword" Style="{StaticResource textBox}" Text="{Binding Password}" />
+                        <Image Source="/Image/lock.png" Height="20"/>
+                        <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint}"/>
+                        <!--<PasswordBox  x:Name="txtPassword" Style="{StaticResource textBox}" Password="{Binding Password}" />-->
+                        <TextBox x:Name="txtPassword" Style="{StaticResource textBox}" Text="{Binding Password}"/>
                     </Grid>
                 </Border>
 
