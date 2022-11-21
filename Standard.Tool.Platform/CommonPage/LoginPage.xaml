@@ -60,7 +60,7 @@
 
                         <Image Height="20"/>
                         <TextBlock x:Name="textEmail" Text="Email" Style="{StaticResource textHint}"/>
-                        <TextBox x:Name="txtEmail" Style="{StaticResource textBox}" />
+                        <TextBox x:Name="txtEmail" Style="{StaticResource textBox}"  Text="{Binding UserName}" />
 
                     </Grid>
                 </Border>
@@ -74,11 +74,11 @@
 
                         <Image Height="20"/>
                         <TextBlock x:Name="textPassword" Text="Password" Style="{StaticResource textHint}"/>
-                        <PasswordBox x:Name="txtPassword" Style="{StaticResource textBox}" />
+                        <PasswordBox x:Name="txtPassword" Style="{StaticResource textBox}" Text="{Binding Password}" />
                     </Grid>
                 </Border>
 
-                <Button Content="Sign In" Style="{StaticResource mainButton}"/>
+                <Button Content="Sign In" Style="{StaticResource mainButton}" Command="{Binding SignIn}"/>
             </StackPanel>
         </Border>
     </Grid>
