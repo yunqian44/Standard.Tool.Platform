@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Standard.Tool.Platform.MVVM\Standard.Tool.Platform.MVVM.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Image\azure.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
