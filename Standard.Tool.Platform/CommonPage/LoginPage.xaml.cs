@@ -23,17 +23,17 @@ namespace Standard.Tool.Platform.CommonPage
         public LoginPage()
         {
             InitializeComponent();
-            this.DataContext = new LoginPageViewMode();
+            DataContext = new LoginPageViewMode();
         }
 
-        private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            txtEmail.Focus();
+            this.DragMove();
         }
 
-        private void textPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            txtPassword.Focus();
+            Application.Current.Shutdown();
         }
     }
 }

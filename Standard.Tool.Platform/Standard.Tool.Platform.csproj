@@ -8,6 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\azure.png" />
+    <None Remove="Image\closed.png" />
+    <None Remove="Image\email.png" />
+    <None Remove="Image\google.png" />
+    <None Remove="Image\lock.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\email.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\google.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
   </ItemGroup>
 
@@ -16,21 +33,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Image\azure.png">
+    <Resource Include="Image\azure.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Image\closed.png">
+    </Resource>
+    <Resource Include="Image\closed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Image\email.png">
+    </Resource>
+    <Resource Include="Image\lock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Image\google.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Image\lock.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Resource>
   </ItemGroup>
 
 </Project>
