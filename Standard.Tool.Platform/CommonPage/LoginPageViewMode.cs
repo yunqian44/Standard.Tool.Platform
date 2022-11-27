@@ -49,22 +49,23 @@ namespace Standard.Tool.Platform.CommonPage
         #region 方法
 
         #region 登录操作
-        internal void SignInExecute()
+        public void SignInExecute()
         {
             if ("admin".Equals(UserName) && "1111".Equals(Password))
             {
                 MainWindow mainPage = new MainWindow();
                 mainPage.ShowDialog();
+
             }
         }
 
-        internal bool CanSignInExecute()
+        public bool CanSignInExecute()
         {
             return !string.IsNullOrWhiteSpace(UserName)
                 &&!string.IsNullOrWhiteSpace(Password);
         }
 
-        internal ICommand SignIn
+        public ICommand SignIn
         {
             get { return new RelayCommand(SignInExecute, CanSignInExecute); }
         }
