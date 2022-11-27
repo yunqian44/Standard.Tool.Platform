@@ -55,6 +55,7 @@ namespace Standard.Tool.Platform.CommonPage
             {
                 MainWindow mainPage = new MainWindow();
                 mainPage.ShowDialog();
+
             }
         }
 

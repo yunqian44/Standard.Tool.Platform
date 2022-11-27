@@ -19,11 +19,12 @@ namespace Standard.Tool.Platform.CommonPage
     /// </summary>
     public partial class LoginPage : Window
     {
-
+        private LoginPageViewMode _loginPageViewMode = null;
         public LoginPage()
         {
             InitializeComponent();
-            DataContext = new LoginPageViewMode();
+            _loginPageViewMode = new LoginPageViewMode();
+            DataContext = _loginPageViewMode;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
