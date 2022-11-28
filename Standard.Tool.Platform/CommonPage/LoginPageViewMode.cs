@@ -53,8 +53,8 @@ namespace Standard.Tool.Platform.CommonPage
         {
             if ("admin".Equals(UserName) && "1111".Equals(Password))
             {
-                MainWindow mainPage = new MainWindow();
-                mainPage.ShowDialog();
+                //MainWindow mainPage = new MainWindow();
+                //mainPage.ShowDialog();
 
             }
         }
