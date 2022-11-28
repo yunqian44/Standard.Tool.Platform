@@ -21,11 +21,11 @@ namespace Standard.Tool.Platform
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel _mainWindowViewModel = null;
+        private MainWindowViewModel _mainWindowViewModel;
         public MainWindow()
         {
             InitializeComponent();
-            _mainWindowViewModel = new MainWindowViewModel(this.WindowMain);
+            _mainWindowViewModel = new MainWindowViewModel(this);
             DataContext = _mainWindowViewModel;
         }
 
