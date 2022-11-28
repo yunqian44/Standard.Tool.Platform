@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Tool.Platform.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Tool.Platform.PostgreSql", "Standard.Tool.Platform.PostgreSql\Standard.Tool.Platform.PostgreSql.csproj", "{6AA3F17C-33AC-4EE8-B140-C934D9A199BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Tool.Platform.Common", "Standard.Tool.Platform.Common\Standard.Tool.Platform.Common.csproj", "{EE13989C-EA93-4306-A502-C82A2817B258}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{6AA3F17C-33AC-4EE8-B140-C934D9A199BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AA3F17C-33AC-4EE8-B140-C934D9A199BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AA3F17C-33AC-4EE8-B140-C934D9A199BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE13989C-EA93-4306-A502-C82A2817B258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE13989C-EA93-4306-A502-C82A2817B258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE13989C-EA93-4306-A502-C82A2817B258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE13989C-EA93-4306-A502-C82A2817B258}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{3F13B719-1154-406A-A72D-093B7DA34075} = {C9F1EFCF-5F9D-46C7-80C6-0DFF3298A168}
 		{D76BDB16-35AA-42D9-90BB-62D0BD198DEF} = {61403449-FCEA-404D-B35D-CF4AE65DD95D}
 		{6AA3F17C-33AC-4EE8-B140-C934D9A199BB} = {61403449-FCEA-404D-B35D-CF4AE65DD95D}
+		{EE13989C-EA93-4306-A502-C82A2817B258} = {10F2C108-0427-40A9-8543-3BB6086D48BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {184CE8A4-D622-4C2C-AB83-C823571980B1}
