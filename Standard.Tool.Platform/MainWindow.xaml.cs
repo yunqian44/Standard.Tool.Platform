@@ -21,55 +21,17 @@ namespace Standard.Tool.Platform
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel _mainWindowViewModel = null;
         public MainWindow()
         {
             InitializeComponent();
-
-            var menuRegister = new List<SubItem>();
-            menuRegister.Add(new SubItem("客户",new MainWindow1()));
-            menuRegister.Add(new SubItem("供应商"));
-            menuRegister.Add(new SubItem("员工"));
-            menuRegister.Add(new SubItem("产品"));
-            var item1 = new ItemMenu("登记", menuRegister, PackIconKind.Register);
-
-            var menuSchedule = new List<SubItem>();
-            menuSchedule.Add(new SubItem("服务"));
-            menuSchedule.Add(new SubItem("会议"));
-            var item2 = new ItemMenu("预约", menuSchedule, PackIconKind.Schedule);
-
-            var menuReports = new List<SubItem>();
-            menuReports.Add(new SubItem("客户"));
-            menuReports.Add(new SubItem("供应商"));
-            menuReports.Add(new SubItem("产品"));
-            menuReports.Add(new SubItem("库存"));
-            menuReports.Add(new SubItem("销售额"));
-            var item3 = new ItemMenu("报告", menuReports, PackIconKind.FileReport);
-
-            var menuExpenses = new List<SubItem>();
-            menuExpenses.Add(new SubItem("固定资产"));
-            menuExpenses.Add(new SubItem("流动资金"));
-            var item4 = new ItemMenu("费用", menuExpenses, PackIconKind.ShoppingBasket);
-
-            var menuFinancial = new List<SubItem>();
-            menuFinancial.Add(new SubItem("现金流"));
-            var item5 = new ItemMenu("财务", menuFinancial, PackIconKind.ScaleBalance);
-
-          
-            Menu.Children.Add(new UserControlMenuItem(item1, this));
-            Menu.Children.Add(new UserControlMenuItem(item2, this));
-            Menu.Children.Add(new UserControlMenuItem(item3, this));
-            Menu.Children.Add(new UserControlMenuItem(item4, this));
-            Menu.Children.Add(new UserControlMenuItem(item4, this));
+            _mainWindowViewModel = new MainWindowViewModel(this.WindowMain);
+            DataContext = _mainWindowViewModel;
         }
 
         internal void SwitchScreen(object sender)
         {
-            var screen = ((Page)sender);
-
-            if (screen != null)
-            {
-                StackPanelMain.Content = screen;
-            }
+            _mainWindowViewModel.SwitchScreen(sender);
         }
 
         public class ItemMenu
@@ -97,6 +59,11 @@ namespace Standard.Tool.Platform
 
             public string Name { get; private set; }
             public Page Screen { get; private set; }
+        }
+
+        private void WindowMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }
