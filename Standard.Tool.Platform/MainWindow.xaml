@@ -35,7 +35,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top">
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                             <Menu Grid.Column="0" VerticalAlignment="Center" FontSize="14">
                                 <MenuItem Header="{DynamicResource Mnu_System}">
                                     <MenuItem Header="{DynamicResource Mni_About}"
@@ -75,6 +75,7 @@
                                     </MenuItem>
                                 </MenuItem>
                             </Menu>
+                            <TextBlock Text="eBR Package Tools" VerticalAlignment="Center" FontWeight="Bold" FontSize="34"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
                             <TextBlock Text="{DynamicResource Tit_MainWindow}" FontSize="18" VerticalAlignment="Center"/>
@@ -103,8 +104,8 @@
             <Border CornerRadius="0 0 10 0" Grid.Column="1">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#3E3A65" Offset="0" />
-                        <GradientStop Color="#473765" Offset="1" />
+                        <GradientStop Color="#DCDCDC" Offset="0" />
+                        <GradientStop Color="#F5F5F5" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
