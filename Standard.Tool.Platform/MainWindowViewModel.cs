@@ -49,7 +49,7 @@ namespace Standard.Tool.Platform
             var item2 = new ItemMenu("项目级应用功能", menuSchedule, PackIconKind.Schedule);
 
             var menuReports = new List<SubItem>();
-            menuReports.Add(new SubItem("西塘日志在线查看"));
+            menuReports.Add(new SubItem("系统日志在线查看"));
             menuReports.Add(new SubItem("数据源配置"));
             menuReports.Add(new SubItem("翻译修改"));
             menuReports.Add(new SubItem("个人信息设置"));
