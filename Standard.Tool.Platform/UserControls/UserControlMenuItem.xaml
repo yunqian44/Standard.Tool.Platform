@@ -10,10 +10,11 @@
         <materialDesign:PackIcon Kind="{Binding Icon}" Width="15" Height="15" Margin="10 16" Foreground="White"/>
         <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding HeadName}" Padding="37 14" FontSize="15" Foreground="White"/>
         <Expander x:Name="ExpanderMenu" Header="{Binding HeadName}" IsExpanded="False" Width="210" HorizontalAlignment="Right" Background="{x:Null}" Foreground="White">
-            <ListView x:Name="ListViewMenu" ItemsSource="{Binding SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+            <ListView x:Name="ListViewMenu" ItemsSource="{Binding SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single" MouseUp="ListViewMenu_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" Padding="20 5"/>
+                        <!--<Button Content="{Binding Name}" Padding="20 5" Command="{Binding ListViewMenu_Selection,ElementName=Name}"/>-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
