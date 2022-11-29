@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Standard.Tool.Platform.Common.Helper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -34,6 +35,7 @@ namespace Standard.Tool.Platform
             var hostBuilder = Host.CreateDefaultBuilder(args);
             hostBuilder.ConfigureServices((ctx, services) =>
             {
+                services.AddSingleton(new TableDataHelper(AppDomain.CurrentDomain.BaseDirectory));
                 services.AddSingleton<MainWindow>();
             });
 

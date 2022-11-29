@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Standard.Tool.Platform.Common\Standard.Tool.Platform.Common.csproj" />
+    <ProjectReference Include="..\Standard.Tool.Platform.Core\Standard.Tool.Platform.Core.csproj" />
     <ProjectReference Include="..\Standard.Tool.Platform.MVVM\Standard.Tool.Platform.MVVM.csproj" />
   </ItemGroup>
 
@@ -49,6 +50,12 @@
 
   <ItemGroup>
     <Folder Include="Pages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TableData\Menu.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

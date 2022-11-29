@@ -11,6 +11,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static Standard.Tool.Platform.MainWindow;
+using System.Text.Json.Serialization;
+using Standard.Tool.Platform.Common.Helper;
+using System.Reflection;
+using System.Windows.Documents;
 
 namespace Standard.Tool.Platform
 {
@@ -18,54 +22,18 @@ namespace Standard.Tool.Platform
     {
         public MainWindowViewModel() 
         {
-
         }
 
         public MainWindowViewModel(MainWindow mainWindow)
         {
-            var menuRegister = new List<SubItem>();
-            menuRegister.Add(new SubItem("标准脚本导入", new MainWindow1()));
-            menuRegister.Add(new SubItem("标准脚本导出"));
-            menuRegister.Add(new SubItem("标准设备导入"));
-            menuRegister.Add(new SubItem("标准设备导出"));
-            menuRegister.Add(new SubItem("标准PI导入"));
-            menuRegister.Add(new SubItem("标准PI导出"));
-            menuRegister.Add(new SubItem("数据库对象导入"));
-            menuRegister.Add(new SubItem("数据库对象导出"));
-            menuRegister.Add(new SubItem("XFP参数导入"));
-            menuRegister.Add(new SubItem("XFP参数导出"));
-            var item1 = new ItemMenu("标准库导入导出", menuRegister, PackIconKind.Register);
-
-            var menuSchedule = new List<SubItem>();
-            menuSchedule.Add(new SubItem("用户批量导入"));
-            menuSchedule.Add(new SubItem("客制化权限导入"));
-            menuSchedule.Add(new SubItem("物料主数据导入"));
-            menuSchedule.Add(new SubItem("物料清单倒入"));
-            menuSchedule.Add(new SubItem("位置导入"));
-            menuSchedule.Add(new SubItem("设备数据导入"));
-            menuSchedule.Add(new SubItem("参数管理功能"));
-            menuSchedule.Add(new SubItem("打印机配置信息迁移"));
-            menuSchedule.Add(new SubItem("称配信息迁移"));
-            var item2 = new ItemMenu("项目级应用功能", menuSchedule, PackIconKind.Schedule);
-
-            var menuReports = new List<SubItem>();
-            menuReports.Add(new SubItem("西塘日志在线查看"));
-            menuReports.Add(new SubItem("数据源配置"));
-            menuReports.Add(new SubItem("翻译修改"));
-            menuReports.Add(new SubItem("个人信息设置"));
-            var item3 = new ItemMenu("其他功能", menuReports, PackIconKind.Mother);
-
-            var menuExpenses = new List<SubItem>();
-            menuExpenses.Add(new SubItem("用户管理"));
-            var item4 = new ItemMenu("工具管理", menuExpenses, PackIconKind.Tools);
-
-
-
-            mainWindow.Menu.Children.Add(new UserControlMenuItem(item1, mainWindow));
-            mainWindow.Menu.Children.Add(new UserControlMenuItem(item2, mainWindow));
-            mainWindow.Menu.Children.Add(new UserControlMenuItem(item3, mainWindow));
-            mainWindow.Menu.Children.Add(new UserControlMenuItem(item4, mainWindow));
-            mainWindow.Menu.Children.Add(new UserControlMenuItem(item4, mainWindow));
+            var menus = JsonHelper.DeserializeJsonToObject<List<ItemMenu>>(TableDataHelper.GetData(nameof(Menu)));
+            if (menus != null && menus.Count > 0)
+            {
+                foreach (var item in menus)
+                {
+                    mainWindow.Menu.Children.Add(new UserControlMenuItem(item, mainWindow));
+                }
+            }
         }
 
         #region Property
@@ -130,6 +98,7 @@ namespace Standard.Tool.Platform
             }
         }
         #endregion
+
         #endregion
 
         #region Method
@@ -164,5 +133,37 @@ namespace Standard.Tool.Platform
         #endregion 
 
         #endregion
+    }
+
+    public class ItemMenu
+    {
+        public ItemMenu()
+        { }
+        public ItemMenu(string headName, List<SubItem> subItems, PackIconKind icon)
+        {
+            HeadName = headName;
+            SubItems = subItems;
+            Icon = icon;
+        }
+
+        public string HeadName { get;  set; }
+        public PackIconKind Icon { get;  set; }
+        public List<SubItem> SubItems { get;  set; }
+    }
+
+    public class SubItem
+    {
+        public SubItem()
+        {
+            
+        }
+        public SubItem(string name, string screenName = null)
+        {
+            Name = name;
+            ScreenName = screenName;
+        }
+
+        public string Name { get;  set; }
+        public string ScreenName { get;  set; }
     }
 }

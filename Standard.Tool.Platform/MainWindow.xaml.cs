@@ -34,33 +34,6 @@ namespace Standard.Tool.Platform
             _mainWindowViewModel.SwitchScreen(sender);
         }
 
-        public class ItemMenu
-        {
-            public ItemMenu(string header, List<SubItem> subItems, PackIconKind icon)
-            {
-                Header = header;
-                SubItems = subItems;
-                Icon = icon;
-            }
-
-            public string Header { get; private set; }
-            public PackIconKind Icon { get; private set; }
-            public List<SubItem> SubItems { get; private set; }
-            public UserControl Screen { get; private set; }
-        }
-
-        public class SubItem
-        {
-            public SubItem(string name, Page screen = null)
-            {
-                Name = name;
-                Screen = screen;
-            }
-
-            public string Name { get; private set; }
-            public Page Screen { get; private set; }
-        }
-
         private void WindowMain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();

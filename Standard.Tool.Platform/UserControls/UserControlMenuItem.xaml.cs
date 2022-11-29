@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Standard.Tool.Platform.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,7 +39,27 @@ namespace Standard.Tool.Platform.UserControls
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _context.SwitchScreen(((SubItem)((ListView)sender).SelectedItem).Screen);
+            var assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
+            var types = assembly.ExportedTypes;
+            var screenName = ((SubItem)((ListView)sender).SelectedItem).ScreenName;
+
+            string fullName = "";
+            foreach (var type in assembly.ExportedTypes)
+            {
+                if (type.Name.Equals(screenName))
+                {
+                    fullName = type.FullName;
+                    break;
+                }
+            }
+            
+            if (!string.IsNullOrEmpty(fullName))
+            {
+                var screen = assembly.CreateInstance(fullName); //通过制定类完全限定名，动态获取对象实例
+
+                _context.SwitchScreen(screen);
+            }
+
         }
     }
 }
