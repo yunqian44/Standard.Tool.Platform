@@ -115,7 +115,7 @@
     "SubItems": [
       {
         "Name": "用户管理",
-        "ScreenName": null
+        "ScreenName": "AccountPage"
       }
     ]
   }
