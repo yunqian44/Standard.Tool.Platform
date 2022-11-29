@@ -37,7 +37,7 @@ namespace Standard.Tool.Platform.UserControls
             this.DataContext = itemMenu;
         }
 
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListViewMenu_SelectionChanged(object sender, MouseButtonEventArgs e)
         {
             var assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
             var types = assembly.ExportedTypes;
@@ -52,14 +52,13 @@ namespace Standard.Tool.Platform.UserControls
                     break;
                 }
             }
-            
+
             if (!string.IsNullOrEmpty(fullName))
             {
                 var screen = assembly.CreateInstance(fullName); //通过制定类完全限定名，动态获取对象实例
 
                 _context.SwitchScreen(screen);
             }
-
         }
     }
 }
