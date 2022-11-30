@@ -13,6 +13,7 @@
     <None Remove="Image\email.png" />
     <None Remove="Image\google.png" />
     <None Remove="Image\lock.png" />
+    <None Remove="Image\siemens.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +45,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\lock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\siemens.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
