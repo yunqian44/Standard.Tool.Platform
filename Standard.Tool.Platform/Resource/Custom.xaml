@@ -121,16 +121,17 @@
         </Style.Triggers>
     </Style>
 
+    <!--**********导航栏按钮样式  Start**********-->
     <Style x:Key="menuMainButton" TargetType="Button">
-        <Setter Property="Width" Value="200"/>
-        <Setter Property="Margin" Value="0 5 0 0"/>
+        <!--<Setter Property="Width" Value="200"/>-->
+        <Setter Property="Margin" Value="20 5 20 0"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#FDFEFE"/>
+        <!--<Setter Property="Foreground" Value="#"/>-->
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="#3AB198" Padding="15">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" Padding="15">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
@@ -139,17 +140,18 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#339685"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Foreground" Value="#009999"/>
+                <!--<Setter Property="Foreground" Value="White"/>-->
             </Trigger>
 
-            <Trigger Property="IsMouseCaptured" Value="True">
-                <Setter Property="Background" Value="#2D7A6C"/>
+            <!--<Trigger Property="IsMouseCaptured" Value="True">
+                <Setter Property="Background" Value="#009999"/>
                 <Setter Property="Foreground" Value="White"/>
-            </Trigger>
+            </Trigger>-->
         </Style.Triggers>
     </Style>
-
+    <!--**********导航栏按钮样式  End**********-->
+    
     <Style  x:Key="imgClose" TargetType="Image">
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>
@@ -168,7 +170,8 @@
 
     </Style>
 
-    <Style x:Key="PagingButton" TargetType="Button">
+    <!--**********分页栏样式  Start**********-->
+    <Style x:Key="pagingButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#6C7682"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -186,17 +189,68 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#339685"/>
+                <Setter Property="Background" Value="#009999"/>
                 <Setter Property="Foreground" Value="#FFFFFF"/>
             </Trigger>
 
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="PagingButtonIcon" TargetType="materialDesign:PackIcon">
+    <Style x:Key="pagingButtonIcon" TargetType="materialDesign:PackIcon">
         <Setter Property="Width" Value="10"/>
         <Setter Property="Height" Value="10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+    <!--**********分页栏样式  End**********-->
+    
+    
+    <!--**********导航栏样式  Start**********-->
+    <Style x:Key="menuListViewItem" TargetType="ListViewItem">
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Foreground" Value="#009999"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="true">
+
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Foreground" Value="#009999"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+    <!--**********导航栏样式  End**********-->
+
+
+    <!--**********搜索操作栏按钮样式  Start**********-->
+    <Style x:Key="operationButton" TargetType="Button">
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Margin" Value="10 5"/>
+        <Setter Property="Background" Value="#009999"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" Padding="15 5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!--<Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#009999"/>
+            </Trigger>
+        </Style.Triggers>-->
+    </Style>
+    <!--**********搜索操作栏按钮样式  End**********-->
 </ResourceDictionary>
     
