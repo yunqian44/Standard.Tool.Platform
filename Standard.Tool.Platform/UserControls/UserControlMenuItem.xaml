@@ -7,14 +7,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" >
     <Grid>
-        <materialDesign:PackIcon Kind="{Binding Icon}" Width="15" Height="15" Margin="10 16" Foreground="White"/>
-        <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding HeadName}" Padding="37 14" FontSize="15" Foreground="White"/>
-        <Expander x:Name="ExpanderMenu" Header="{Binding HeadName}" IsExpanded="False" Width="210" HorizontalAlignment="Right" Background="{x:Null}" Foreground="White">
-            <ListView x:Name="ListViewMenu" ItemsSource="{Binding SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single" MouseUp="ListViewMenu_SelectionChanged">
+        <materialDesign:PackIcon Kind="{Binding Icon}" FontWeight="Bold" Width="15" Height="15" Margin="10 16"/>
+        <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding HeadName}" FontWeight="Bold" Padding="37 14" FontSize="15"/>
+        <Expander x:Name="ExpanderMenu" Header="{Binding HeadName}" FontWeight="Bold" IsExpanded="False" Width="210" HorizontalAlignment="Right" Background="{x:Null}">
+            <ListView ItemContainerStyle="{StaticResource menuListViewItem}" x:Name="ListViewMenu" ItemsSource="{Binding SubItems}" FontWeight="Bold" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="Single" MouseUp="ListViewMenu_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}" Padding="20 5"/>
-                        <!--<Button Content="{Binding Name}" Padding="20 5" Command="{Binding ListViewMenu_Selection,ElementName=Name}"/>-->
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Padding="20 5"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

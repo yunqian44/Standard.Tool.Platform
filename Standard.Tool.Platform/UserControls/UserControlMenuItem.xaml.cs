@@ -57,7 +57,10 @@ namespace Standard.Tool.Platform.UserControls
             {
                 var screen = assembly.CreateInstance(fullName); //通过制定类完全限定名，动态获取对象实例
 
-                _context.SwitchScreen(screen);
+                if (screen != null)
+                {
+                    _context.SwitchScreen(screen);
+                }
             }
         }
     }
