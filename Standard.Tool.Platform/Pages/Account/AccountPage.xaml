@@ -3,11 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Standard.Tool.Platform.Pages.Account"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:Converters="clr-namespace:Standard.Tool.Platform.Common.Converters;assembly=Standard.Tool.Platform.Common"
       mc:Ignorable="d"
       Title="用户管理">
+    <Page.Resources>
+        <Converters:AccountStatusConverter x:Key="AccountStatusConverter"/>
+    </Page.Resources>
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -21,52 +25,45 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions >
 
-                <StackPanel Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Label Content="用户组" />
+                <StackPanel Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Content="用户名" FontSize="15" />
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Margin="10" HorizontalAlignment="Left">
-                    <TextBox Text="请选择" Width="120" BorderBrush="#009999" BorderThickness="1"/>
+                <StackPanel Grid.Column="1" Margin="5" HorizontalAlignment="Left">
+                    <TextBox Style="{StaticResource de_textBox}" Text="{Binding UserName}" />
                 </StackPanel>
 
-
-                <StackPanel Grid.Column="2" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Label Content="状态" />
+                <StackPanel Grid.Column="2" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Content="状态" FontSize="15" />
                 </StackPanel>
 
-                <StackPanel Grid.Column="3" Margin="10" HorizontalAlignment="Left">
-                    <TextBox Text="请选择" Width="120" BorderBrush="#009999" BorderThickness="1"/>
-                </StackPanel>
-
-                <StackPanel Grid.Column="4" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Label Content="全名" />
-                </StackPanel>
-
-                <StackPanel Grid.Column="5" Margin="10" HorizontalAlignment="Left">
-                    <TextBox Text="请选择" Width="120" BorderBrush="#009999" BorderThickness="1"/>
+                <StackPanel Grid.Column="3" Margin="5" HorizontalAlignment="Left">
+                    <ComboBox Style="{StaticResource de_comboBox}" ItemsSource="{Binding StatusList}" 
+                              SelectedItem="Status" DisplayMemberPath="Name" 
+                              SelectedValue="Value" SelectedIndex="0"/>
                 </StackPanel>
 
 
-                <StackPanel Grid.Row="1" Grid.Column="0" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Label Content="名称" />
+                <StackPanel Grid.Row="1" Grid.Column="0" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Content="名称" FontSize="15" />
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBox Text="请选择" Width="120" BorderBrush="#009999" BorderThickness="1"/>
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBox Style="{StaticResource de_textBox}" Text="{Binding Name}" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" >
                     <Button Style="{StaticResource operationButton}" Command="{Binding Refresh}">
                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <materialDesign:PackIcon Kind="CircleOutline" Style="{StaticResource buttonIcon}" />
-                            <Label Content="刷新" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="#FFFFFF"/>
+                            <materialDesign:PackIcon Kind="BackupRestore" Style="{StaticResource buttonIcon}" />
+                            <Label Content="重置" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="#FFFFFF"/>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource operationButton}" Command="{Binding Search}">
@@ -88,7 +85,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal"  Margin="5" >
+                <!--<StackPanel Orientation="Horizontal"  Margin="5" >
                     <Button Style="{StaticResource operationButton}" Command="{Binding Refresh}">
                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center" >
                             <Label Content="导出至目标库" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="#FFFFFF"/>
@@ -99,29 +96,54 @@
                             <Label Content="导出至本地" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="#FFFFFF"/>
                         </StackPanel>
                     </Button>
-                </StackPanel>
+                </StackPanel>-->
 
                 <Grid Grid.Row="1"  Margin="5">
-                    <DataGrid IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid 
+                        Style="{DynamicResource DataGridStyle1}" 
+                        CellStyle="{DynamicResource DataGridCellStyle1}"
+                        ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                        RowStyle="{DynamicResource DataGridRowStyle1}"
+                        IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding UserList}">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn CanUserResize="False" Width="*">
-                                <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataGridTemplateColumn Header="选择" Width="70">
+                                <!--列头模板-->
+                                <DataGridTemplateColumn.HeaderTemplate>
                                     <DataTemplate>
-                                        <CheckBox/>
+                                        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <CheckBox x:Name="DepPatientCheckBox" Style="{StaticResource gridCheckBox}"></CheckBox>
+                                        </StackPanel>
                                     </DataTemplate>
-                                </DataGridCheckBoxColumn.HeaderTemplate>
-                            </DataGridCheckBoxColumn>
-                            <DataGridTextColumn Header="序号" Width="*" />
-                            <DataGridTextColumn Header="名称" Width="*" />
-                            <DataGridTextColumn Header="缩写" Width="*" />
-                            <DataGridTextColumn Header="有效期"  Width="*" />
-                            <DataGridTextColumn Header="状态" Width="*" />
+                                </DataGridTemplateColumn.HeaderTemplate>
+                                <!--单元格模板-->
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <CheckBox Name="ckbItem" Style="{StaticResource gridCheckBox}" IsChecked="{Binding IsCheckBinding,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="序号" Binding="{Binding No}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                                    true" CanUserResize="False" />
+                            <DataGridTextColumn Header="用户名" Binding="{Binding UserName}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                                    true" CanUserResize="False" />
+                            <DataGridTextColumn Header="最后一次登录时间" MinWidth="150" Binding="{Binding LastLoginTimeUtc}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                                    true" CanUserResize="False" />
+                            <DataGridTextColumn Header="创建时间" Binding="{Binding CreateTimeUtc}"  ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                                    true" CanUserResize="False" />
+                            <DataGridTextColumn Header="状态" Binding="{Binding Status, Converter={StaticResource AccountStatusConverter}}"  ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                                    true" CanUserResize="False" />
                             <DataGridTemplateColumn Header="操作" IsReadOnly="True" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Width="80" Content="编辑" />
-                                            <Button Width="80" Content="查看" />
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Style="{StaticResource gridEditButton}">
+                                                <materialDesign:PackIcon Kind="PencilOutline" Style="{StaticResource gridButtonIcon}" />
+                                            </Button>
+                                            <Button Style="{StaticResource gridRemoveButton}">
+                                                <materialDesign:PackIcon Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
+                                            </Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
