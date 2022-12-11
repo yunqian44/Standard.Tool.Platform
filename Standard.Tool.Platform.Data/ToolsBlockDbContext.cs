@@ -22,11 +22,22 @@ namespace Standard.Tool.Platform.Data
         public virtual DbSet<MenuEntity> Menu { get; set; }
         public virtual DbSet<SubMenuEntity> SubMenu { get; set; }
 
+        public virtual DbSet<AccountEntity> Account { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MenuConfiguration());
             modelBuilder.ApplyConfiguration(new SubMenuConfiguration());
           
+        }
+    }
+
+    public static class ToolsBlockDbContextExtension
+    {
+        public static async Task ClearAllData(this ToolsBlockDbContext context)
+        {
+            context.Account.RemoveRange();
+            await context.SaveChangesAsync();
         }
     }
 }
