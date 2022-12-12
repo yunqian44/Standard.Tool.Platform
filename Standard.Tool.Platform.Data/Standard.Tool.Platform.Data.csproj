@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Standard.Tool.Platform.Common\Standard.Tool.Platform.Common.csproj" />
   </ItemGroup>
 
 </Project>
