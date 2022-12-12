@@ -101,51 +101,24 @@
                 </Border.Background>
             </Border>
             <Grid Grid.Column="0">
-                <!--<Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="326*"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" Background="#FFFFFF">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="23*"/>
-                            <ColumnDefinition Width="227*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="Image/siemens.png" Grid.ColumnSpan="2"/>
-                    </Grid>
-                </Border>-->
-
-                <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="80"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" x:Name="Menu" Margin="10"/>
-                        <StackPanel Grid.Row="1">
-                            <Separator  Background="#e0e0e0" Opacity="1" Margin="50 0 60 0"/>
-
-                            <!--<Button Style="{StaticResource menuMainButton}">
-                                <Grid>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                        <materialDesign:PackIcon Kind="FolderOutline" Style="{StaticResource buttonIcon}" />
-                                        <TextBlock Text="账号" Style="{StaticResource buttonText}" />
-                                    </StackPanel>
-                                </Grid>
-                            </Button>-->
-
-                            <Button Style="{StaticResource menuMainButton}" Command="{Binding SignOut}"  CommandParameter="{Binding ElementName=WindowMain}">
-                                <Grid>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                        <materialDesign:PackIcon Kind="CircleOutline" Style="{StaticResource buttonIcon}" />
-                                        <TextBlock Text="退出" Style="{StaticResource buttonText}" />
-                                    </StackPanel>
-                                </Grid>
-                            </Button>
-                        </StackPanel>
-                    </Grid>
+                <ScrollViewer Grid.Row="0" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >
+                    <StackPanel Grid.Row="0" x:Name="Menu" Margin="10"/>
                 </ScrollViewer>
-
+                <StackPanel Grid.Row="1">
+                    <Separator  Background="#e0e0e0" Opacity="1" Margin="50 0 60 0"/>
+                    <Button Style="{StaticResource menuMainButton}" Command="{Binding SignOut}"  CommandParameter="{Binding ElementName=WindowMain}">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Kind="Logout" Style="{StaticResource buttonIcon}" />
+                                <TextBlock Text="退出" Style="{StaticResource buttonText}" />
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+                </StackPanel>
             </Grid>
             <Border Grid.Column="2">
                 <Grid>

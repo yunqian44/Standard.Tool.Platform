@@ -8,12 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
     <None Remove="Image\azure.png" />
     <None Remove="Image\closed.png" />
     <None Remove="Image\email.png" />
     <None Remove="Image\google.png" />
     <None Remove="Image\lock.png" />
     <None Remove="Image\siemens.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +44,8 @@
     <ProjectReference Include="..\Standard.Tool.Platform.Common\Standard.Tool.Platform.Common.csproj" />
     <ProjectReference Include="..\Standard.Tool.Platform.Core\Standard.Tool.Platform.Core.csproj" />
     <ProjectReference Include="..\Standard.Tool.Platform.Data\Standard.Tool.Platform.Data.csproj" />
+    <ProjectReference Include="..\Standard.Tool.Platform.Materials\Standard.Tool.Platform.Materials.csproj" />
+    <ProjectReference Include="..\Standard.Tool.Platform.Menus\Standard.Tool.Platform.Menus.csproj" />
     <ProjectReference Include="..\Standard.Tool.Platform.MVVM\Standard.Tool.Platform.MVVM.csproj" />
     <ProjectReference Include="..\Standard.Tool.Platform.PostgreSql\Standard.Tool.Platform.PostgreSql.csproj" />
   </ItemGroup>
