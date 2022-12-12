@@ -1,4 +1,6 @@
-﻿using Standard.Tool.Platform.MVVM;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Standard.Tool.Platform.Extension;
+using Standard.Tool.Platform.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,9 +55,8 @@ namespace Standard.Tool.Platform.CommonPage
         {
             if ("admin".Equals(UserName) && "1111".Equals(Password))
             {
-                //MainWindow mainPage = new MainWindow();
-                //mainPage.ShowDialog();
-
+                ProviderFactory.ServiceProvider?.GetService<MainWindow>()?.Show();
+                ProviderFactory.ServiceProvider?.GetService<LoginPage>()?.Close();
             }
         }
 

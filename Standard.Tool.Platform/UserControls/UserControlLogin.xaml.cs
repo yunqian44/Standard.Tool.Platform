@@ -10,24 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Standard.Tool.Platform.CommonPage
+namespace Standard.Tool.Platform.UserControls
 {
     /// <summary>
-    /// LoginPage.xaml 的交互逻辑
+    /// LoginView.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginPage : Window
+    public partial class UserControlLogin : UserControl
     {
-        public LoginPage()
+        public UserControlLogin()
         {
             InitializeComponent();
-            DataContext = new LoginPageViewMode();
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            Application.Current.Shutdown();
         }
     }
 }

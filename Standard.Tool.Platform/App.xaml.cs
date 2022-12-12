@@ -21,6 +21,7 @@ using Standard.Tool.Platform.Auth;
 using Standard.Tool.Platform.PostgreSql;
 using Standard.Tool.Platform.Data.Infrastructure.Services;
 using MediatR;
+using Standard.Tool.Platform.CommonPage;
 
 namespace Standard.Tool.Platform
 {
@@ -29,7 +30,6 @@ namespace Standard.Tool.Platform
     /// </summary>
     public partial class App : Application
     {
-
         public static readonly string _connStr;
         protected async override void OnStartup(StartupEventArgs e)
         {
@@ -39,7 +39,7 @@ namespace Standard.Tool.Platform
             var host = await hostbuilder.StartAsync();
             ProviderFactory.ServiceProvider = host.Services;
             await host.InitStartUp();
-            host.Services.GetRequiredService<MainWindow>()?.Show();
+            host.Services.GetRequiredService<LoginPage>()?.Show();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)
@@ -61,7 +61,7 @@ namespace Standard.Tool.Platform
 
                 services.AddSingleton<MainWindow>();
                 services.AddSingleton<AccountPage>();
-
+                services.AddSingleton<LoginPage>();
 
 
 
