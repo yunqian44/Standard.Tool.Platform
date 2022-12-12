@@ -5,13 +5,13 @@ using System.Reflection.Emit;
 
 namespace Standard.Tool.Platform.PostgreSql
 {
-    public class PostgreSqlBlogDbContext : ToolsBlockDbContext
+    public class PostgreSqlToolsBlockDbContext : ToolsBlockDbContext
     {
-        public PostgreSqlBlogDbContext()
+        public PostgreSqlToolsBlockDbContext()
         {
         }
 
-        public PostgreSqlBlogDbContext(DbContextOptions options)
+        public PostgreSqlToolsBlockDbContext(DbContextOptions options)
             : base(options)
         {
         }
