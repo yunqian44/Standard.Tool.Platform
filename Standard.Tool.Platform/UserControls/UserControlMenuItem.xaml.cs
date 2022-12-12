@@ -1,4 +1,5 @@
 ﻿using Standard.Tool.Platform.Core;
+using Standard.Tool.Platform.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,21 +43,20 @@ namespace Standard.Tool.Platform.UserControls
             var assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
             var types = assembly.ExportedTypes;
             var screenName = ((SubItem)((ListView)sender).SelectedItem).ScreenName;
-
-            string fullName = "";
+            Type exportType = null;
             foreach (var type in assembly.ExportedTypes)
             {
                 if (type.Name.Equals(screenName))
                 {
-                    fullName = type.FullName;
+                    exportType = type;
                     break;
                 }
             }
 
-            if (!string.IsNullOrEmpty(fullName))
+            if (exportType != null)
             {
-                var screen = assembly.CreateInstance(fullName); //通过制定类完全限定名，动态获取对象实例
-
+                //var screen = assembly.CreateInstance(fullName); //通过制定类完全限定名，动态获取对象实例
+                var screen = ProviderFactory.ServiceProvider.GetService(exportType);//通過Service Container 获取对象 
                 if (screen != null)
                 {
                     _context.SwitchScreen(screen);
