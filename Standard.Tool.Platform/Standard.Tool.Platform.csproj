@@ -27,14 +27,18 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Standard.Tool.Platform.Auth\Standard.Tool.Platform.Auth.csproj" />
     <ProjectReference Include="..\Standard.Tool.Platform.Common\Standard.Tool.Platform.Common.csproj" />
     <ProjectReference Include="..\Standard.Tool.Platform.Core\Standard.Tool.Platform.Core.csproj" />
+    <ProjectReference Include="..\Standard.Tool.Platform.Data\Standard.Tool.Platform.Data.csproj" />
     <ProjectReference Include="..\Standard.Tool.Platform.MVVM\Standard.Tool.Platform.MVVM.csproj" />
+    <ProjectReference Include="..\Standard.Tool.Platform.PostgreSql\Standard.Tool.Platform.PostgreSql.csproj" />
   </ItemGroup>
 
   <ItemGroup>
