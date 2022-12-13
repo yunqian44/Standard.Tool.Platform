@@ -4,17 +4,36 @@
 
 
     <Style x:Key="titleText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#000000"/>
+    </Style>
+
+    <Style x:Key="normalText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="10"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
     </Style>
 
-    <Style x:Key="normalText" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="18"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="TextAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="#FFFFFF"/>
+    <Style x:Key="linkButton" TargetType="Button">
+        <Setter Property="Foreground" Value="#878787" />
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock TextDecorations="Underline">  
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="Red" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="button" TargetType="Button">
@@ -47,14 +66,13 @@
     </Style>
 
     <Style x:Key="buttonCircle" TargetType="Button">
-
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Background" Value="Azure"/>
         <Setter Property="Foreground" Value="#FDFEFE"/>
-        <Setter Property="Margin" Value="8 0"/>
+        <Setter Property="Margin" Value="15 0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="30" BorderThickness="1" BorderBrush="#878787" Padding="15">
+                    <Border Height="40" Width="40" Background="{TemplateBinding Background}" CornerRadius="20" BorderThickness="1" BorderBrush="#878787" Padding="5">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
@@ -85,23 +103,25 @@
     <Style x:Key="textBox" TargetType="Control">
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="Grid.Column" Value="1"/>
-        <Setter Property="Margin" Value="10 0 0 0"/>
-        <Setter Property="Foreground" Value="#878787"/>
+        <Setter Property="Height" Value="30"/>
+        <!--<Setter Property="Margin" Value="10 0 0 0"/>-->
+        <Setter Property="Foreground" Value="#000000"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
 
     <Style x:Key="mainButton" TargetType="Button">
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Width" Value="200"/>
-        <Setter Property="Margin" Value="0 20 0 0"/>
-        <Setter Property="Background" Value="#3AB198"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="Margin" Value="5 20 30 0"/>
+        <Setter Property="Background" Value="#009999"/>
         <Setter Property="Foreground" Value="#FDFEFE"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="#3AB198" Padding="15">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" BorderBrush="#3AB198" Padding="15">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
