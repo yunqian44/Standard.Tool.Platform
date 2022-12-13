@@ -11,10 +11,15 @@
     <None Remove="appsettings.json" />
     <None Remove="Image\azure.png" />
     <None Remove="Image\closed.png" />
-    <None Remove="Image\email.png" />
+    <None Remove="Image\dingding.png" />
     <None Remove="Image\google.png" />
+    <None Remove="Image\key.png" />
     <None Remove="Image\lock.png" />
+    <None Remove="Image\login_background.png" />
+    <None Remove="Image\qq.png" />
     <None Remove="Image\siemens.png" />
+    <None Remove="Image\user.png" />
+    <None Remove="Image\weichat.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,8 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Image\email.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Resource Include="Image\dingding.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\google.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -57,11 +62,26 @@
     <Resource Include="Image\closed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Image\key.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Image\lock.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\login_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\qq.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\siemens.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\weichat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 
