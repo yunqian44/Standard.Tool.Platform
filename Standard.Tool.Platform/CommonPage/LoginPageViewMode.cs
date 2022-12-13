@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Standard.Tool.Platform.CommonPage
@@ -40,6 +41,20 @@ namespace Standard.Tool.Platform.CommonPage
             }
         }
         #endregion 
+
+        #region 激活码
+        private string _key;
+        public string Key
+        {
+            get { return _key; }
+            set
+            {
+                _key = value;
+                RaisePropertyChanged("Key");
+            }
+        }
+        #endregion 
+
         #endregion
 
         public LoginPageViewMode()
@@ -50,7 +65,7 @@ namespace Standard.Tool.Platform.CommonPage
 
         #region 方法
 
-        #region 登录操作
+        #region 01，登录操作
         public void SignInExecute()
         {
             if ("admin".Equals(UserName) && "1111".Equals(Password))
@@ -69,6 +84,29 @@ namespace Standard.Tool.Platform.CommonPage
         public ICommand SignIn
         {
             get { return new RelayCommand(SignInExecute, CanSignInExecute); }
+        }
+        #endregion 
+
+        #region 02，激活操作
+        public void ActivateExecute()
+        {
+            if ("00000-11111-22222-33333-44444-55555".Equals(Key))
+            {
+                MessageBox.Show("激活成功");
+                ProviderFactory.ServiceProvider?.GetService<MainWindow>()?.Show();
+                ProviderFactory.ServiceProvider?.GetService<LoginPage>()?.Close();
+            }
+            
+        }
+
+        public bool CanActivateExecute()
+        {
+            return true;
+        }
+
+        public ICommand Activate
+        {
+            get { return new RelayCommand(ActivateExecute, CanActivateExecute); }
         }
         #endregion 
         #endregion

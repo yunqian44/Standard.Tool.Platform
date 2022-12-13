@@ -5,13 +5,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Standard.Tool.Platform.CommonPage"
-        xmlns:login="clr-namespace:Standard.Tool.Platform.UserControls"
+        xmlns:login="clr-namespace:Standard.Tool.Platform.UserControls" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:coreHelper="clr-namespace:Standard.Tool.Platform.ControlHelpers" 
         mc:Ignorable="d"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent"
         Title="LoginPage" Height="500" Width="800">
     <Grid>
-        <login:UserControlLogin></login:UserControlLogin>
+        <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True">
+            <Grid>
+                <login:UserControlLogin></login:UserControlLogin>
+            </Grid>
+            <materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide.BackwardWipe>
+                    <materialDesign:CircleWipe/>
+                </materialDesign:TransitionerSlide.BackwardWipe>
+                <materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:SlideWipe Direction="Right"/>
+                </materialDesign:TransitionerSlide.ForwardWipe>
+                <login:UserControlOfflineLogin></login:UserControlOfflineLogin>
+            </materialDesign:TransitionerSlide>
+        </materialDesign:Transitioner>
     </Grid>
 </Window>
