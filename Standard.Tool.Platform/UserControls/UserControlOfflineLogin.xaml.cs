@@ -26,10 +26,5 @@ namespace Standard.Tool.Platform.UserControls
             InitializeComponent();
             this.DataContext = new LoginPageViewMode();
         }
-
-        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
     }
 }

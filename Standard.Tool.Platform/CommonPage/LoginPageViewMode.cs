@@ -109,6 +109,23 @@ namespace Standard.Tool.Platform.CommonPage
             get { return new RelayCommand(ActivateExecute, CanActivateExecute); }
         }
         #endregion 
+
+        #region 02，激活操作
+        public void CloseExecute()
+        {
+            Application.Current.Shutdown();
+        }
+
+        public bool CanCloseExecute()
+        {
+            return true;
+        }
+
+        public ICommand Close
+        {
+            get { return new RelayCommand(CloseExecute, CanCloseExecute); }
+        }
+        #endregion 
         #endregion
     }
 }

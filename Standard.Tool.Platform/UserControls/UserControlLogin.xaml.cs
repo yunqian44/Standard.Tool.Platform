@@ -16,14 +16,4 @@ public partial class UserControlLogin : UserControl
         InitializeComponent();
         this.DataContext = new LoginPageViewMode();
     }
-
-    private void Image_MouseUp(object sender, MouseButtonEventArgs e)
-    {
-        Application.Current.Shutdown();
-    }
-
-    private void txtPassword_MouseUp(object sender, MouseButtonEventArgs e)
-    {
-
-    }
 }

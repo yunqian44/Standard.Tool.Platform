@@ -13,7 +13,7 @@
             <ColumnDefinition Width="1.1*" />
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="..\Image\closed.png" Grid.Column="1" Panel.ZIndex="1" Style="{StaticResource imgClose}" MouseUp="Image_MouseUp">
+        <Image Source="..\Image\closed.png" Grid.Column="1" Panel.ZIndex="1" Style="{StaticResource imgClose}">
             <Image.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding Close}" />
             </Image.InputBindings>
