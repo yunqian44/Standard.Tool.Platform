@@ -73,6 +73,12 @@ namespace Standard.Tool.Platform.CommonPage
                 ProviderFactory.ServiceProvider?.GetService<MainWindow>()?.Show();
                 ProviderFactory.ServiceProvider?.GetService<LoginPage>()?.Close();
             }
+            else
+            {
+                MessageBox.Show("用户名或密码错误");
+                UserName = string.Empty;
+                Password=string.Empty;
+            }
         }
 
         public bool CanSignInExecute()
@@ -110,7 +116,7 @@ namespace Standard.Tool.Platform.CommonPage
         }
         #endregion 
 
-        #region 02，激活操作
+        #region 03，关闭操作
         public void CloseExecute()
         {
             Application.Current.Shutdown();
