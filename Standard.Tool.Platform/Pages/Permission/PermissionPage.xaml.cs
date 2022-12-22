@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Standard.Tool.Platform.Pages.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,14 @@ using System.Windows.Shapes;
 namespace Standard.Tool.Platform.Pages.Account
 {
     /// <summary>
-    /// AccountPage.xaml 的交互逻辑
+    /// PermissionPage.xaml 的交互逻辑
     /// </summary>
-    public partial class AccountPage : Page
+    public partial class PermissionPage : Page
     {
-        public AccountPage(IMediator mediator)
+        public PermissionPage(IMediator mediator)
         {
             InitializeComponent();
-            DataContext = new AccountPageViewModel(mediator);
+            DataContext = new PermissionPageViewModel(mediator);
         }
     }
 }

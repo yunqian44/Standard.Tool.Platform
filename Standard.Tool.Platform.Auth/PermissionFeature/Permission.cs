@@ -4,10 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Standard.Tool.Platform.Auth
+namespace Standard.Tool.Platform.Auth.PermissionFeature
 {
-    public record Permission
+    public class Permission
     {
+        private int _no;
+        /// <summary>
+        /// 序号
+        /// </summary>
+        public int No
+        {
+            get { return _no; }
+            set
+            {
+                _no = ++value;
+            }
+        }
+
+        /// <summary>
+        /// 是否选中
+        /// </summary>
+        public int IsSelected { get; set; }
+
+        /// <summary>
+        /// GUID
+        /// </summary>
         public Guid Id { get; set; }
 
         /// <summary>
@@ -19,6 +40,11 @@ namespace Standard.Tool.Platform.Auth
         /// 权限编码
         /// </summary>
         public string Code { get; set; }
+
+        /// <summary>
+        /// 模块名称
+        /// </summary>
+        public string TypeName { get; set; }
 
         /// <summary>
         /// 状态

@@ -1,8 +1,9 @@
-﻿using Standard.Tool.Platform.Data.Entities;
+﻿using Standard.Tool.Platform.Auth.PermissionFeature;
+using Standard.Tool.Platform.Data.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace Standard.Tool.Platform.Auth;
+namespace Standard.Tool.Platform.Auth.AccountFeature;
 
 public class Account
 {
@@ -33,6 +34,11 @@ public class Account
     /// 用户名
     /// </summary>
     public string UserName { get; set; }
+
+    /// <summary>
+    /// 登录名
+    /// </summary>
+    public string LoginName { get; set; }
 
     /// <summary>
     /// 权限

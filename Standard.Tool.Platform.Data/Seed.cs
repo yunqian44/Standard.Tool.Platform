@@ -16,6 +16,8 @@ public class Seed
         {
             await dbContext.Account.AddRangeAsync(GetAccounts());
 
+            await dbContext.Permission.AddRangeAsync(GetPermissions());
+
             await dbContext.SaveChangesAsync();
         }
         catch (Exception e)
@@ -36,11 +38,29 @@ public class Seed
     {
         new()
         {
-            Id = Guid.Parse("ab78493d-7569-42d2-ae78-c2b610ada1aa"),
-            UserName = "admin",
+            Id = Guid.NewGuid(),
+            UserName = "超级管理员",
+            LoginName= "admin",
             PasswordHash = "JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=",
             Status="Enable",
             CreateTimeUtc = DateTime.UtcNow
+        }
+    };
+    }
+
+    private static IEnumerable<PermissionEntity> GetPermissions()
+    {
+        return new List<PermissionEntity>
+    {
+        new()
+        {
+            Id = Guid.NewGuid(),
+            Code="PermissionPage",
+            Name="权限信息页面",
+            Status="Enable",
+            CreateTimeUtc = DateTime.UtcNow,
+            LastModifiedTimeUtc=DateTime.UtcNow,
+            Type=PermissionType.Page
         }
     };
     }

@@ -21,7 +21,7 @@ namespace Standard.Tool.Platform.Data.Infrastructure
             bool canConnect = DbContext.Database.CanConnect();
             if (!canConnect) return;
 
-            DbContext.Database.EnsureCreatedAsync();
+            await DbContext.Database.EnsureCreatedAsync();
         }
 
         public Task Clear(CancellationToken ct = default)

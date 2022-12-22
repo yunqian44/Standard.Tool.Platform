@@ -115,20 +115,55 @@ namespace Standard.Tool.Platform
         }
         #endregion
 
-        #region 02，SignOut
-        void SignOutExecute(MainWindow window)
+        #region 02，关闭操作
+        public void CloseExecute()
         {
-            window.Close();
+            Application.Current.Shutdown();
         }
 
-        bool CanSignOutExecute(MainWindow window)
+        public bool CanCloseExecute()
         {
             return true;
         }
 
-        public ICommand SignOut
+        public ICommand Close
         {
-            get { return new RelayCommand<MainWindow>(SignOutExecute, CanSignOutExecute); }
+            get { return new RelayCommand(CloseExecute, CanCloseExecute); }
+        }
+        #endregion 
+
+        #region 03，最大化操作
+        public void MaxExecute(MainWindow windows)
+        {
+            if(windows.WindowState== WindowState.Normal) windows.WindowState = WindowState.Maximized;
+            else if(windows.WindowState == WindowState.Maximized) windows.WindowState = WindowState.Normal;
+        }
+
+        public bool CanMaxExecute(MainWindow windows)
+        {
+            return true;
+        }
+
+        public ICommand Max
+        {
+            get { return new RelayCommand<MainWindow>(MaxExecute, CanMaxExecute); }
+        }
+        #endregion 
+
+        #region 04，最小化操作
+        public void MinExecute(MainWindow windows)
+        {
+            windows.WindowState = WindowState.Minimized;
+        }
+
+        public bool CanMinExecute(MainWindow windows)
+        {
+            return true;
+        }
+
+        public ICommand Min
+        {
+            get { return new RelayCommand<MainWindow>(MinExecute, CanMinExecute); }
         }
         #endregion 
 

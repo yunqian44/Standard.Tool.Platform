@@ -116,6 +116,10 @@
       {
         "Name": "用户管理",
         "ScreenName": "AccountPage"
+      },
+      {
+        "Name": "权限管理",
+        "ScreenName": "PermissionPage"
       }
     ]
   }
