@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using Standard.Tool.Platform.Auth;
+using Standard.Tool.Platform.Auth.AccountFeature;
 using Standard.Tool.Platform.MVVM;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AuthCore = Standard.Tool.Platform.Auth;
@@ -15,10 +17,37 @@ public class AccountPageViewModel : ObservableObject
     public AccountPageViewModel(IMediator mediator)
     {
         _mediator = mediator;
+        RefreshExecute();
         SearchExecute();
     }
 
     #region Property
+
+    #region UserName
+    private string _userName;
+    public string UserName
+    {
+        get { return _userName; }
+        set
+        {
+            _userName = value;
+            RaisePropertyChanged(nameof(UserName));
+        }
+    }
+    #endregion
+
+    #region LoginName
+    private string _loginName;
+    public string LoginName
+    {
+        get { return _loginName; }
+        set
+        {
+            _loginName = value;
+            RaisePropertyChanged(nameof(LoginName));
+        }
+    }
+    #endregion
 
     #region Status
     private StatusValue _status;
@@ -45,9 +74,9 @@ public class AccountPageViewModel : ObservableObject
     #endregion
 
     #region UserList
-    private ObservableCollection<AuthCore.Account> _userList;
+    private ObservableCollection<AuthCore.AccountFeature.Account> _userList;
 
-    public ObservableCollection<AuthCore.Account> UserList
+    public ObservableCollection<AuthCore.AccountFeature.Account> UserList
     {
         get { return _userList; }
         set
@@ -66,7 +95,17 @@ public class AccountPageViewModel : ObservableObject
     #region 01，Refresh
     void RefreshExecute()
     {
+        UserName = string.Empty;
+        LoginName=string.Empty;
 
+        var statusData = new List<StatusValue>();
+        statusData.Add(new StatusValue() { Name = "==请选择==", Value = "" });
+        statusData.Add(new StatusValue() { Name = "启用", Value = "Enable" });
+        statusData.Add(new StatusValue() { Name = "禁用", Value = "Disable" });
+
+        StatusList = new ObservableCollection<StatusValue>(statusData);
+
+        Status = StatusList?.FirstOrDefault();
     }
 
     bool CanRefreshExecute()
@@ -84,21 +123,14 @@ public class AccountPageViewModel : ObservableObject
     #region 02，Search
     void SearchExecute()
     {
-        var statusData = new List<StatusValue>();
-        statusData.Add(new StatusValue() { Name = "==请选择==", Value = "Enable" });
-        statusData.Add(new StatusValue() { Name = "启用", Value = "Enable" });
-        statusData.Add(new StatusValue() { Name = "禁用", Value = "Disable" });
-
-        StatusList = new ObservableCollection<StatusValue>(statusData);
-        IList<AuthCore.Account> dataList = null;
+        IList<AuthCore.AccountFeature.Account> dataList = null;
         Task.Run(async
             () =>
         {
-
             dataList = await _mediator.Send(new GetAccountsQuery());
 
             if (dataList != null)
-                UserList = new ObservableCollection<AuthCore.Account>(dataList);
+                UserList = new ObservableCollection<AuthCore.AccountFeature.Account>(dataList);
         });
 
 
@@ -112,6 +144,23 @@ public class AccountPageViewModel : ObservableObject
     public ICommand Search
     {
         get { return new RelayCommand(SearchExecute, CanSearchExecute); }
+    }
+    #endregion
+
+    #region AssignUserPermissions
+    void AssignUserPermissionsExecute(string userId)
+    {
+
+    }
+
+    bool CanAssignUserPermissionsExecute(string userId)
+    {
+        return true;
+    }
+
+    public ICommand AssignUserPermissions
+    {
+        get { return new RelayCommand<string>(AssignUserPermissionsExecute, CanAssignUserPermissionsExecute); }
     }
     #endregion
 

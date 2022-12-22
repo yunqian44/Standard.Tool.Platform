@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace Standard.Tool.Platform.Pages.Account
     /// </summary>
     public partial class AccountPage : Page
     {
-        public AccountPage()
+        public AccountPage(IMediator mediator)
         {
             InitializeComponent();
+            DataContext = new AccountPageViewModel(mediator);
         }
     }
 }
