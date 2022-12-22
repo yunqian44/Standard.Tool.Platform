@@ -16,6 +16,8 @@
     <None Remove="Image\key.png" />
     <None Remove="Image\lock.png" />
     <None Remove="Image\login_background.png" />
+    <None Remove="Image\maximize.png" />
+    <None Remove="Image\minimize.png" />
     <None Remove="Image\qq.png" />
     <None Remove="Image\siemens.png" />
     <None Remove="Image\user.png" />
@@ -69,6 +71,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\login_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\maximize.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\minimize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\qq.png">

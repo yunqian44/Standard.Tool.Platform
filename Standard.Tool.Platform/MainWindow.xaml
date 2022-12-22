@@ -19,7 +19,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
+        <Image Source="\Image\closed.png" Grid.Column="1"  Panel.ZIndex="1" Style="{StaticResource imgClose}">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding Close}" CommandParameter="{Binding ElementName=WindowMain}" />
+            </Image.InputBindings>
+        </Image>
+        <Image Source="\Image\maximize.png" Grid.Column="1"  Panel.ZIndex="1" Style="{StaticResource imgClose}" Margin="0 13 48 0">
+            <Image.InputBindings>
+                <MouseBinding  Gesture="LeftClick" Command="{Binding Max}" CommandParameter="{Binding ElementName=WindowMain}" />
+            </Image.InputBindings>
+        </Image>
+        <Image Source="\Image\minimize.png" Grid.Column="1"  Panel.ZIndex="1" Style="{StaticResource imgClose}" Margin="0 13 80 0">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding Min}" CommandParameter="{Binding ElementName=WindowMain}" />
+            </Image.InputBindings>
+        </Image>
         <Border CornerRadius="10 10 0 0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,0.5">
@@ -27,52 +43,9 @@
                     <GradientStop Color="#E7E9EB" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Border Grid.Row="0" x:Name="BorderTitleBar" Padding="4">
+            <Border Grid.Row="0" x:Name="BorderTitleBar" Padding="20,4">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Menu VerticalAlignment="Center" FontSize="14">
-                            <MenuItem Header="{DynamicResource Mnu_System}">
-                                <MenuItem Header="{DynamicResource Mni_About}"
-                                  Command="{Binding AboutApp}">
-                                    <MenuItem.Icon>
-                                        <StackPanel>
-                                            <Image Source="/eBRClient;component/Resources/Images/Icons/about.png"/>
-                                        </StackPanel>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <Separator/>
-                                <MenuItem Header="{DynamicResource Mni_LogIn}"
-                                  Command="{Binding LogIn}" InputGestureText="Ctrl+L">
-                                    <MenuItem.Icon>
-                                        <StackPanel>
-                                            <Image Source="/eBRClient;component/Resources/Images/Icons/login.png"/>
-                                        </StackPanel>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="{DynamicResource Mni_LogOut}"
-                                  Command="{Binding LogOut}" InputGestureText="Esc">
-                                    <MenuItem.Icon>
-                                        <StackPanel>
-                                            <Image Source="/eBRClient;component/Resources/Images/Icons/logout.png"/>
-                                        </StackPanel>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <Separator/>
-                                <MenuItem Header="{DynamicResource Mni_Exit}"
-                                  Command="{Binding Exit}"
-                                  CommandParameter="{Binding ElementName=WindowMain}" InputGestureText="Alt+X">
-                                    <MenuItem.Icon>
-                                        <StackPanel>
-                                            <Image Source="/eBRClient;component/Resources/Images/Icons/exit.png"/>
-                                        </StackPanel>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                            </MenuItem>
-                        </Menu>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Image Source="Image/siemens.png"/>
                         <Label Content="eBR Package Tools" VerticalAlignment="Center" FontWeight="Bold" FontSize="28"/>
                     </StackPanel>
@@ -84,7 +57,7 @@
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border CornerRadius="0 0 0 10" Grid.Column="0">
+            <Border CornerRadius="0 0 0 0" Grid.Column="0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,0.5">
                         <GradientStop Color="#E7E9EB" Offset="0"/>
@@ -92,7 +65,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
-            <Border CornerRadius="0 0 10 0" Grid.Column="1">
+            <Border CornerRadius="0 0 0 0" Grid.Column="1">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Color="#DCDCDC" Offset="0" />
@@ -108,9 +81,9 @@
                 <ScrollViewer Grid.Row="0" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >
                     <StackPanel Grid.Row="0" x:Name="Menu" Margin="10"/>
                 </ScrollViewer>
-                <StackPanel Grid.Row="1">
+                <!--<StackPanel Grid.Row="1">
                     <Separator  Background="#e0e0e0" Opacity="1" Margin="50 0 60 0"/>
-                    <Button Style="{StaticResource menuMainButton}" Command="{Binding SignOut}"  CommandParameter="{Binding ElementName=WindowMain}">
+                    <Button Style="{StaticResource menuMainButton}" Command="{Binding Closed}"  CommandParameter="{Binding ElementName=WindowMain}">
                         <Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <materialDesign:PackIcon Kind="Logout" Style="{StaticResource buttonIcon}" />
@@ -118,9 +91,9 @@
                             </StackPanel>
                         </Grid>
                     </Button>
-                </StackPanel>
+                </StackPanel>-->
             </Grid>
-            <Border Grid.Column="2">
+            <Border Grid.Column="2" Padding="15" CornerRadius="10 10 0 0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -138,6 +111,24 @@
                     <Border Grid.Row="1" Background="#F5F5F5">
                         <Frame x:Name="StackPanelMain" HorizontalAlignment="Stretch" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
                     </Border>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.Effect>
+                <DropShadowEffect Color="LightGray" ShadowDepth="5" BlurRadius="5" Opacity="0.5" Direction="50" />
+            </Grid.Effect>
+            <Border CornerRadius="0 0 10 10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,0.5">
+                        <GradientStop Color="#E7E9EB" Offset="0"/>
+                        <GradientStop Color="#E7E9EB" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid Background="#E7E9EB" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Padding="40 0" Foreground="#009999" FontSize="14px" FontWeight="Bold">
+                        Copy Ritht @ SIEMENS 2022
+                    </TextBlock>
                 </Grid>
             </Border>
         </Grid>
