@@ -530,6 +530,7 @@
         <Setter Property="Height" Value="20"/>
         <Setter Property="IsChecked" Value="{Binding IsChecked}"/>
         <Setter Property="Margin" Value="20,0"/>
+        <Setter Property="Content" Value="{Binding Content}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBox">
@@ -538,13 +539,17 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Height}">
+                        <Grid Grid.Column="0" Height="{TemplateBinding Height}" Width="{TemplateBinding Height}">
                             <Rectangle x:Name="CheckBoxRectangle" Fill="#FFFFFF" Opacity="1" RadiusY="5" RadiusX="5"/>
                             <Rectangle x:Name="CheckBoxRectangleOut" Stroke="#DCDCDC" StrokeThickness="1" RadiusY="5" RadiusX="5"/>
                             <Grid x:Name="CheckedMark" Width="18" Height="18" Visibility="Collapsed">
                                 <Path SnapsToDevicePixels="False" StrokeThickness="1" Data="M1,9 L10,17" Stroke="White"/>
                                 <Path SnapsToDevicePixels="False" StrokeThickness="1" Data="M8,17 L20,4" Stroke="White"/>
                             </Grid>
+                            
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Grid.Column="2" Text="{TemplateBinding Content}"/>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
