@@ -561,23 +561,6 @@
     </Style>
     <!--**********datagrid checkBox基础样式按钮样式  End**********-->
 
-
-    <!--<Style x:Key="searchTextBox" TargetType="{x:Type TextBox}">
-        <Setter Property="Width" Value="120"/>
-        <Setter Property="Height" Value="25"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="BorderBrush" Value="#009999"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="TextBox">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3" BorderThickness="1" Padding="5 2">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
-
     <Style x:Key="de_textBox" TargetType="{x:Type TextBox}">
         <Setter Property="Width" Value="150"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -598,8 +581,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
 
     <!--Combox-->
     <Style x:Key="de_comboBox" TargetType="{x:Type ComboBox}" >
@@ -760,6 +741,53 @@
         </Setter>
 
 
+    </Style>
+
+
+    <Storyboard x:Key="ShowSide">
+        <DoubleAnimation Duration="00:00:0.5" From="0" To="300" 
+                             Storyboard.TargetName="SideFrame" Storyboard.TargetProperty="Width">
+            <DoubleAnimation.EasingFunction>
+                <CubicEase EasingMode="EaseOut"/>
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+        <DoubleAnimation Duration="00:00:0.5" From="0" To="0.5" 
+                             Storyboard.TargetName="Mask" Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation.EasingFunction>
+                <CubicEase EasingMode="EaseOut"/>
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+    </Storyboard>
+    <Storyboard x:Key="OffSide">
+        <DoubleAnimation Duration="00:00:0.5" From="300" To="0" 
+                             Storyboard.TargetName="SideFrame" Storyboard.TargetProperty="Width">
+            <DoubleAnimation.EasingFunction>
+                <CubicEase EasingMode="EaseOut"/>
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+        <DoubleAnimation Duration="00:00:0.5" From="0.5" To="0" 
+                             Storyboard.TargetName="Mask" Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation.EasingFunction>
+                <CubicEase EasingMode="EaseOut"/>
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+    </Storyboard>
+
+    <Style x:Key="ItemsControlStyle1" TargetType="{x:Type ItemsControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ItemsControl}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                               BorderThickness="{TemplateBinding BorderThickness}"
+                               Background="{TemplateBinding Background}"
+                               Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                        <ScrollViewer>
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>
