@@ -32,7 +32,7 @@ public partial class App : Application
         var host = await hostbuilder.StartAsync();
         ProviderFactory.ServiceProvider = host.Services;
         await host.InitStartUp();
-        host.Services.GetRequiredService<MainWindow>()?.Show();
+        host.Services.GetRequiredService<AssignUserPermissionPage>()?.Show();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args)
@@ -56,7 +56,7 @@ public partial class App : Application
             services.AddSingleton<AccountPage>();
             services.AddSingleton<LoginPage>();
             services.AddSingleton<PermissionPage>();
-
+            services.AddSingleton<AssignUserPermissionPage>();
 
             services.AddTransient<Account>();
             services.AddTransient<Permission>();

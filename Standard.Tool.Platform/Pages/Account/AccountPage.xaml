@@ -124,17 +124,17 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="序号" Binding="{Binding No}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="序号" Binding="{Binding No}" ElementStyle="{StaticResource CenterAlignmentStyle}" MinWidth="50" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="登录名" Binding="{Binding LoginName}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="登录名" Binding="{Binding LoginName}" ElementStyle="{StaticResource CenterAlignmentStyle}" MinWidth="80" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="用户名" Binding="{Binding UserName}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="用户名" Binding="{Binding UserName}" ElementStyle="{StaticResource CenterAlignmentStyle}" MinWidth="80" IsReadOnly="
                                     true" CanUserResize="False" />
                             <DataGridTextColumn Header="最后一次登录时间" MinWidth="150" Binding="{Binding LastLoginTimeUtc}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="创建时间" Binding="{Binding CreateTimeUtc}"  ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="创建时间" Binding="{Binding CreateTimeUtc}"  ElementStyle="{StaticResource CenterAlignmentStyle}" MinWidth="100" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="状态" Binding="{Binding Status, Converter={StaticResource AccountStatusConverter}}"  ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="状态" Binding="{Binding Status, Converter={StaticResource AccountStatusConverter}}" MinWidth="80"  ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
                                     true" CanUserResize="False" />
                             <DataGridTemplateColumn Header="操作" IsReadOnly="True" MinWidth="150">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -146,7 +146,7 @@
                                             <Button Style="{StaticResource gridRemoveButton}">
                                                 <materialDesign:PackIcon Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
                                             </Button>
-                                            <Button Style="{StaticResource gridRemoveButton}" Command="{Binding DataContext.AssignUserPermissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" CommandParameter="{Binding LoginName}">
+                                            <Button Style="{StaticResource gridRemoveButton}" Command="{Binding DataContext.AssignUserPermissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" CommandParameter="{Binding Id}">
                                                 <materialDesign:PackIcon Kind="Account" Style="{StaticResource gridButtonIcon}" />
                                             </Button>
                                         </StackPanel>
