@@ -119,7 +119,6 @@ public class AccountPageViewModel : ObservableObject
     }
     #endregion
 
-
     #region 02，Search
     void SearchExecute()
     {
@@ -147,7 +146,7 @@ public class AccountPageViewModel : ObservableObject
     }
     #endregion
 
-    #region AssignUserPermissions
+    #region 03，AssignUserPermissions
     void AssignUserPermissionsExecute(string userId)
     {
 
@@ -163,7 +162,6 @@ public class AccountPageViewModel : ObservableObject
         get { return new RelayCommand<string>(AssignUserPermissionsExecute, CanAssignUserPermissionsExecute); }
     }
     #endregion
-
 
     #endregion
 }
