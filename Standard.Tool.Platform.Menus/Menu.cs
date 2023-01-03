@@ -21,7 +21,7 @@ namespace Standard.Tool.Platform.Menus
             Id = entity.Id;
             Title = entity.Title.Trim();
             DisplayOrder = entity.DisplayOrder;
-            Icon = entity.Icon?.Trim();
+            Icon = entity.Icon.Trim();
             //Url = entity.Url?.Trim();
             IsOpenInNewTab = entity.IsOpenInNewTab;
             SubMenus = entity.SubMenus.Select(sm => new SubMenu

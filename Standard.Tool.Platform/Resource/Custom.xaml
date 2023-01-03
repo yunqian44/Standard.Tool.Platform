@@ -191,7 +191,7 @@
 
     </Style>
     <!--**********关闭按钮样式  End**********-->
-    
+
     <!--**********分页栏样式  Start**********-->
     <Style x:Key="pagingButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
@@ -272,7 +272,91 @@
         </Style.Triggers>
     </Style>
     <!--**********搜索操作栏按钮样式  End**********-->
-    
+
+    <!--**********搜索操作栏默认按钮样式  Start**********-->
+    <Style x:Key="operationDefaultButton" TargetType="Button">
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="10 5"/>
+        <Setter Property="Background" Value="#009999"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="1" Padding="15 5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--**********搜索操作栏默认按钮样式  End**********-->
+
+    <!--**********搜索操作栏默认按钮样式  Start**********-->
+    <Style x:Key="operationDefaultCancelButton" TargetType="Button">
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="10 5"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#009999"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding Foreground}" CornerRadius="5" BorderThickness="1" Padding="15 5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--**********搜索操作栏默认按钮样式  End**********-->
+
+    <!--**********搜索操作栏默认按钮样式  Start**********-->
+    <Style x:Key="tabButton" TargetType="Button">
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="10 5"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#009999"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding Foreground}" CornerRadius="5" BorderThickness="1" Padding="15 5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Trigger>
+
+            <!--当鼠标按下时，按钮形态设置-->
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="Background"  Value="#009999"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+    <!--**********搜索操作栏默认按钮样式  End**********-->
+
     <!--**********DataGrid样式  Start**********-->
     <Style x:Key="DataGridRowStyle1" TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="#FFFFFF"/>
@@ -541,12 +625,12 @@
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0" Height="{TemplateBinding Height}" Width="{TemplateBinding Height}">
                             <Rectangle x:Name="CheckBoxRectangle" Fill="#FFFFFF" Opacity="1" RadiusY="5" RadiusX="5"/>
-                            <Rectangle x:Name="CheckBoxRectangleOut" Stroke="#DCDCDC" StrokeThickness="1" RadiusY="5" RadiusX="5"/>
+                            <Rectangle x:Name="CheckBoxRectangleOut" Stroke="#8A8886" StrokeThickness="1" RadiusY="5" RadiusX="5"/>
                             <Grid x:Name="CheckedMark" Width="18" Height="18" Visibility="Collapsed">
                                 <Path SnapsToDevicePixels="False" StrokeThickness="1" Data="M1,9 L10,17" Stroke="White"/>
                                 <Path SnapsToDevicePixels="False" StrokeThickness="1" Data="M8,17 L20,4" Stroke="White"/>
                             </Grid>
-                            
+
                         </Grid>
                         <Grid Grid.Column="1" Margin="5 0" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Grid.Column="2" Text="{TemplateBinding Content}"/>

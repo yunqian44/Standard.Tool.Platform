@@ -25,5 +25,10 @@ namespace Standard.Tool.Platform.Pages.Account
             InitializeComponent();
             DataContext = new AssignUserPermissionPageViewModel(mediator);
         }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }
