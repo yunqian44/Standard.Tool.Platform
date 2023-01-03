@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection.Emit;
 
 namespace Standard.Tool.Platform.Data.Entities
 {
@@ -33,6 +34,7 @@ namespace Standard.Tool.Platform.Data.Entities
             builder.HasOne(d => d.Menu)
                 .WithMany(p => p.SubMenus)
                 .HasForeignKey(d => d.MenuId);
+
         }
     }
 }

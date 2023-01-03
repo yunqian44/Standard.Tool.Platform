@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using NPOI.POIFS.Properties;
 
 namespace Standard.Tool.Platform.Data.Entities
 {
@@ -14,6 +16,7 @@ namespace Standard.Tool.Platform.Data.Entities
         public PermissionEntity()
         {
             AccountPermissions = new HashSet<AccountPermissionEntity>();
+            Childrens = new HashSet<PermissionEntity>();
         }
 
         /// <summary>
@@ -37,6 +40,11 @@ namespace Standard.Tool.Platform.Data.Entities
         public PermissionType Type { get; set; }
 
         /// <summary>
+        /// 父级Id
+        /// </summary>
+        public Guid? ParentId { get; set; }
+
+        /// <summary>
         /// 状态
         /// </summary>
         public string Status { get; set; }
@@ -51,6 +59,19 @@ namespace Standard.Tool.Platform.Data.Entities
         /// </summary>
         public DateTime CreateTimeUtc { get; set; }
 
+        /// <summary>
+        /// 父级
+        /// </summary>
+        [ForeignKey(nameof(ParentId))]
+        [InverseProperty(nameof(Childrens))]
+        public virtual PermissionEntity Parent { get; set; }
+
+        /// <summary>
+        /// 子级
+        /// </summary>
+        [InverseProperty(nameof(Parent))]
+        public virtual ICollection<PermissionEntity> Childrens { get; set; }
+
         public virtual ICollection<AccountPermissionEntity> AccountPermissions { get; set; }
     }
 
@@ -60,10 +81,13 @@ namespace Standard.Tool.Platform.Data.Entities
         System = 10,
 
         [Description("模块")]
-        Module = 0,
+        Module =0,
 
         [Description("页面")]
-        Page = 1
+        Page = 1,
+
+        [Description("按钮控制")]
+        Control =2
     }
 
     internal class PermissionConfiguration : IEntityTypeConfiguration<PermissionEntity>
@@ -73,6 +97,8 @@ namespace Standard.Tool.Platform.Data.Entities
             builder.Property(e => e.Id).ValueGeneratedNever();
             builder.Property(e => e.Name).HasMaxLength(64);
             builder.Property(e => e.Code).HasMaxLength(256);
+            builder.HasOne(d => d.Parent).WithMany(p => p.Childrens)
+            .HasForeignKey(d => d.ParentId);
         }
     }
 }
