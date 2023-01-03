@@ -52,7 +52,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0">
                     <Grid>
-                        <ItemsControl ItemsSource="{Binding ListName}" Style="{DynamicResource ItemsControlStyle1}">
+                        <ItemsControl ItemsSource="{Binding ModuleList}" Style="{DynamicResource ItemsControlStyle1}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Margin="5 10">
@@ -82,7 +82,7 @@
             </Border.Background>
             <Border Padding="20,10">
                 <Grid>
-                    <ItemsControl ItemsSource="{Binding ListName}" Style="{DynamicResource ItemsControlStyle1}">
+                    <ItemsControl ItemsSource="{Binding PermissionList}" Style="{DynamicResource ItemsControlStyle1}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="5 10">
@@ -105,17 +105,14 @@
                                                     </Grid>
                                                     <Border Grid.Row="0" Height="1" Width="150" CornerRadius="2" Background="#8A8886" Opacity="10"/>
                                                 </StackPanel>
-
                                                 <Grid Grid.Row="1" Margin="0 5">
-                                                    <TreeView Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"  ItemsSource="{Binding Permissions}">
-                                                        <TreeView.ItemTemplate>
-                                                            <HierarchicalDataTemplate>
-                                                                <Grid HorizontalAlignment="Left">
-                                                                    <CheckBox Style="{StaticResource gridCheckBox}" Foreground="#000000" IsChecked="{Binding IsSelected, Mode=TwoWay}" Content="{Binding DisplayName}" />
-                                                                </Grid>
-                                                            </HierarchicalDataTemplate>
-                                                        </TreeView.ItemTemplate>
-                                                    </TreeView>
+                                                    <ListBox Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"  ItemsSource="{Binding Childrens}">
+                                                        <ListBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <CheckBox Style="{StaticResource gridCheckBox}" Foreground="#000000" IsChecked="{Binding IsSelected, Mode=TwoWay}" Content="{Binding Name}" />
+                                                            </DataTemplate>
+                                                        </ListBox.ItemTemplate>
+                                                    </ListBox>
                                                 </Grid>
                                             </Grid>
                                         </StackPanel>
