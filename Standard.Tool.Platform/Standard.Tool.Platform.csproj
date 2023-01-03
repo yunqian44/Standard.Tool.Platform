@@ -99,8 +99,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Project.Application\" />
-  </ItemGroup>
-
 </Project>

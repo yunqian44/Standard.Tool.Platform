@@ -131,8 +131,6 @@ public class AccountPageViewModel : ObservableObject
             if (dataList != null)
                 UserList = new ObservableCollection<AuthCore.AccountFeature.Account>(dataList);
         });
-
-
     }
 
     bool CanSearchExecute()
