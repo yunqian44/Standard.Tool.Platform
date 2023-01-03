@@ -75,7 +75,7 @@ namespace Standard.Tool.Platform.Data.Infrastructure
                 DbContext.Set<T>().AnyAsync(cancellationToken: ct);
 
         public async Task<IList<TResult>> SelectAsync<TResult>(Expression<Func<T, TResult>> selector, CancellationToken ct = default) =>
-            await DbContext.Set<T>().AsNoTracking().Select(selector).ToListAsync(cancellationToken: ct);
+            await DbContext.Set<T>().Select(selector).ToListAsync(cancellationToken: ct);
 
 
         public IList<TResult> Select<TResult>(Expression<Func<T, TResult>> selector) =>
