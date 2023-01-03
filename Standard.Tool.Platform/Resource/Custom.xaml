@@ -304,7 +304,7 @@
         <Setter Property="Height" Value="30"/>
         <Setter Property="Margin" Value="10 5"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#313230"/>
+        <Setter Property="Foreground" Value="#009999"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -329,7 +329,7 @@
         <Setter Property="Height" Value="30"/>
         <Setter Property="Margin" Value="10 5"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#313230"/>
+        <Setter Property="Foreground" Value="#009999"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -343,15 +343,13 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Foreground" Value="#009999"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="FontWeight" Value="Bold"/>
             </Trigger>
 
             <!--当鼠标按下时，按钮形态设置-->
             <Trigger Property="IsFocused" Value="true">
                 <Setter Property="Background"  Value="#009999"/>
+                <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Foreground" Value="#FFFFFF"/>
             </Trigger>
         </Style.Triggers>
