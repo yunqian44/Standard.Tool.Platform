@@ -19,7 +19,7 @@ public class GetAccountsQueryHandler : IRequestHandler<GetAccountsQuery, IList<A
     {
         return await _repo.SelectAsync(p => new Account
         {
-            Id = p.Id,
+            Id = p.Id.ToString().Trim(),
             CreateTimeUtc = p.CreateTimeUtc,
             LastLoginTimeUtc = p.LastLoginTimeUtc,
             UserName = p.UserName,

@@ -15,6 +15,7 @@ using MediatR;
 using Standard.Tool.Platform.CommonPage;
 using Standard.Tool.Platform.Auth.AccountFeature;
 using Standard.Tool.Platform.Auth.PermissionFeature;
+using Standard.Tool.Platform.Pages.Project.Application.Material;
 
 namespace Standard.Tool.Platform;
 
@@ -32,7 +33,7 @@ public partial class App : Application
         var host = await hostbuilder.StartAsync();
         ProviderFactory.ServiceProvider = host.Services;
         await host.InitStartUp();
-        host.Services.GetRequiredService<AssignUserPermissionPage>()?.Show();
+        host.Services.GetRequiredService<MainWindow>()?.Show();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args)
@@ -57,6 +58,8 @@ public partial class App : Application
             services.AddSingleton<LoginPage>();
             services.AddSingleton<PermissionPage>();
             services.AddSingleton<AssignUserPermissionPage>();
+            services.AddSingleton<MaterialDataOperatePage>();
+
 
             services.AddTransient<Account>();
             services.AddTransient<Permission>();

@@ -36,6 +36,9 @@ namespace Standard.Tool.Platform.Data.Infrastructure
         Task<bool> AnyAsync(Expression<Func<T, bool>> condition = null, CancellationToken ct = default);
 
         Task<IList<TResult>> SelectAsync<TResult>(Expression<Func<T, TResult>> selector, CancellationToken ct = default);
+
+        Task<IList<TResult>> SelectAsync<TResult>(ISpecification<T> spec, Expression<Func<T, TResult>> selector);
+
         IList<TResult> Select<TResult>(Expression<Func<T, TResult>> selector);
 
         Task<T> AddAsync(T entity, CancellationToken ct = default);

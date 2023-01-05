@@ -77,6 +77,28 @@ namespace Standard.Tool.Platform.Pages.Account
 
         #region 方法
 
+        #region 01，SelectModule
+        void SelectModuleExecute(string permissionId)
+        {
+            Task.Run(async
+                () =>
+            {
+                var dataList = await _mediator.Send(new ListPermissionsSegmentQuery(Guid.Parse(permissionId)));
+                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList);
+            });
+        }
+
+        bool CanSelectModuleExecute(string permissionId)
+        {
+            return true;
+        }
+
+        public ICommand SelectModule
+        {
+            get { return new RelayCommand<string>(SelectModuleExecute, CanSelectModuleExecute); }
+        }
+        #endregion
+
         #region 02，Search
         void SearchExecute()
         {
@@ -88,7 +110,7 @@ namespace Standard.Tool.Platform.Pages.Account
 
                 if (dataList == null) return;
                 ModuleList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList.Where(u => u.ParentId == null));
-                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList.Where(u=>u.ParentId!=null&&u.Type==PermissionType.Page));
+                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList.Where(u => u.ParentId != null && u.Type == PermissionType.Page));
             });
         }
 
@@ -106,7 +128,7 @@ namespace Standard.Tool.Platform.Pages.Account
         #region 03，关闭操作
         public void CloseExecute()
         {
-            ProviderFactory.ServiceProvider.GetRequiredService<AssignUserPermissionPage>().Close();
+            ProviderFactory.ServiceProvider?.GetRequiredService<AssignUserPermissionPage>().Close();
         }
 
         public bool CanCloseExecute()
@@ -118,25 +140,10 @@ namespace Standard.Tool.Platform.Pages.Account
         {
             get { return new RelayCommand(CloseExecute, CanCloseExecute); }
         }
-        #endregion 
+        #endregion
+
+        
 
         #endregion
     }
-
-    public class TypeValue
-    {
-        public string Name { get; set; }
-
-        public string Value { get; set; }
-
-        public List<PermissionValue> Permissions { get; set; }
-    }
-
-    public class PermissionValue
-    {
-        public bool IsSelected { get; set; }
-
-        public string DisplayName { get; set; }
-    }
-
 }

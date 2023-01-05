@@ -77,6 +77,10 @@ namespace Standard.Tool.Platform.Data.Infrastructure
         public async Task<IList<TResult>> SelectAsync<TResult>(Expression<Func<T, TResult>> selector, CancellationToken ct = default) =>
             await DbContext.Set<T>().Select(selector).ToListAsync(cancellationToken: ct);
 
+        public async Task<IList<TResult>> SelectAsync<TResult>(
+    ISpecification<T> spec, Expression<Func<T, TResult>> selector) =>
+    await ApplySpecification(spec).Select(selector).ToListAsync();
+
 
         public IList<TResult> Select<TResult>(Expression<Func<T, TResult>> selector) =>
              DbContext.Set<T>().AsNoTracking().Select(selector).ToList();
@@ -106,5 +110,6 @@ namespace Standard.Tool.Platform.Data.Infrastructure
 
 
         private IQueryable<T> ApplySpecification(ISpecification<T> spec) => SpecificationEvaluator<T>.GetQuery(DbContext.Set<T>().AsQueryable(), spec);
+
     }
 }

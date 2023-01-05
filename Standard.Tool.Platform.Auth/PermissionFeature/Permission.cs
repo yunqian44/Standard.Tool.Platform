@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security;
 using System.Security.Policy;
 using System.Text;
@@ -35,7 +36,7 @@ namespace Standard.Tool.Platform.Auth.PermissionFeature
         /// <summary>
         /// GUID
         /// </summary>
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 权限名称
@@ -91,15 +92,13 @@ namespace Standard.Tool.Platform.Auth.PermissionFeature
         {
             if (entity is null) return;
             if (entity.Parent is null) return;
-
-
             {
-                Id = entity.Parent.Id;
+                Id = entity.Parent.Id.ToString().Trim();
                 Code = entity.Parent.Code;
                 ParentId = entity.Parent.ParentId;
                 Status = entity.Parent.Status;
                 Name = entity.Parent.Name;
-                Type=entity.Parent.Type;
+                Type = entity.Parent.Type;
                 TypeName = entity.Parent.Type.GetDescription();
                 CreateTimeUtc = entity.Parent.CreateTimeUtc;
                 LastModifiedTimeUtc = entity.Parent.LastModifiedTimeUtc;
@@ -108,7 +107,8 @@ namespace Standard.Tool.Platform.Auth.PermissionFeature
 
         public Permission()
         {
-            
+
         }
     }
+
 }

@@ -1,34 +1,30 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace Standard.Tool.Platform.Pages.Account
+namespace Standard.Tool.Platform.Pages.Account;
+
+/// <summary>
+/// AssignUserPermissionPage.xaml 的交互逻辑
+/// </summary>
+public partial class AssignUserPermissionPage : Window
 {
-    /// <summary>
-    /// AssignUserPermissionPage.xaml 的交互逻辑
-    /// </summary>
-    public partial class AssignUserPermissionPage : Window
+    //IMediator _mediator;
+    public AssignUserPermissionPage(IMediator mediator)
     {
-        public AssignUserPermissionPage(IMediator mediator)
-        {
-            InitializeComponent();
-            DataContext = new AssignUserPermissionPageViewModel(mediator);
-        }
+        InitializeComponent();
+        DataContext = new AssignUserPermissionPageViewModel(mediator);
+    }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
+    private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        this.DragMove();
+    }
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        e.Cancel = true;
+        this.Hide();
     }
 }
