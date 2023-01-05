@@ -1,7 +1,9 @@
 ﻿using Standard.Tool.Platform.Auth.PermissionFeature;
+using Standard.Tool.Platform.Common.Helper;
 using Standard.Tool.Platform.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Standard.Tool.Platform.Auth.AccountFeature;
 
@@ -26,9 +28,9 @@ public class Account
     public int IsSelected { get; set; }
 
     /// <summary>
-    /// 
+    /// 用户Id
     /// </summary>
-    public Guid Id { get; set; }
+    public string Id { get; set; }
 
     /// <summary>
     /// 用户名
@@ -65,19 +67,22 @@ public class Account
     public Account(AccountEntity entity)
     {
         if (null == entity) return;
-        Id = entity.Id;
+        Id = entity.Id.ToString().Trim();
         CreateTimeUtc = entity.CreateTimeUtc;
         LastLoginTimeUtc = entity.LastLoginTimeUtc.GetValueOrDefault();
         UserName = entity.UserName.Trim();
         Status = entity.Status.Trim();
-        //Permissions = entity.Permissions.Select(sm => new Permission
-        //{
-        //    Id = sm.Id,
-        //    Name = sm.Name,
-        //    Code = sm.Code,
-        //    Status=sm.Status,
-        //    LastModifiedTimeUtc=sm.LastModifiedTimeUtc,
-        //}).ToList();
+        Permissions = entity.AccountPermissions.Select(sm => new Permission
+        {
+            Id = sm.Permission.Id.ToString().Trim(),
+            Name=sm.Permission.Name,
+            Type= sm.Permission.Type,
+            TypeName=sm.Permission.Type.GetDescription(),
+            CreateTimeUtc= sm.Permission.CreateTimeUtc,
+            Code = sm.Permission.Code,
+            Status = sm.Permission.Status,
+            LastModifiedTimeUtc = sm.Permission.LastModifiedTimeUtc,
+        }).ToList();
     }
 }
 
