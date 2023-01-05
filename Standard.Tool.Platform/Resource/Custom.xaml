@@ -104,7 +104,6 @@
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="Grid.Column" Value="1"/>
         <Setter Property="Height" Value="30"/>
-        <!--<Setter Property="Margin" Value="10 0 0 0"/>-->
         <Setter Property="Foreground" Value="#000000"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -648,8 +647,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <!--**********datagrid checkBox基础样式按钮样式  End**********-->
+    <!--**********datagrid checkBox样式按钮样式  End**********-->
 
+    <!--**********search textBox样式  Start**********-->
     <Style x:Key="de_textBox" TargetType="{x:Type TextBox}">
         <Setter Property="Width" Value="150"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -670,8 +670,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--**********search textBox样式  End**********-->
 
-    <!--Combox-->
+    <!--**********search combox样式  Start**********-->
     <Style x:Key="de_comboBox" TargetType="{x:Type ComboBox}" >
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Width" Value="150"/>
@@ -831,7 +832,7 @@
 
 
     </Style>
-
+    <!--**********search combox样式  End**********-->
 
     <Storyboard x:Key="ShowSide">
         <DoubleAnimation Duration="00:00:0.5" From="0" To="300" 
@@ -862,6 +863,7 @@
         </DoubleAnimation>
     </Storyboard>
 
+    <!--**********itemsControl样式  Start**********-->
     <Style x:Key="ItemsControlStyle1" TargetType="{x:Type ItemsControl}">
         <Setter Property="Template">
             <Setter.Value>
@@ -878,6 +880,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <!--**********itemsControl样式  End**********-->
 </ResourceDictionary>
     

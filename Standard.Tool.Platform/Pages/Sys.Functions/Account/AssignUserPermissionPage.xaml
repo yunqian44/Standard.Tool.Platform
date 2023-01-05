@@ -10,7 +10,7 @@
         Background="Transparent"
         Height="550" Width="800"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -18,7 +18,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Image Source="..\..\Image\closed.png" Grid.Column="1" Panel.ZIndex="1" Style="{StaticResource imgClose}">
+        <Image Source="..\..\..\Image\closed.png" Grid.Column="1" Panel.ZIndex="1" Style="{StaticResource imgClose}">
             <Image.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{Binding Close}" />
             </Image.InputBindings>
@@ -57,7 +57,7 @@
                                 <DataTemplate>
                                     <Grid Margin="5 10">
                                         <StackPanel HorizontalAlignment="Left">
-                                            <Button Style="{StaticResource tabButton}" Height="40" Width="120" Content="{Binding Name}"/>
+                                            <Button Style="{StaticResource tabButton}" Height="40" Width="120" Content="{Binding Name}" Command="{Binding DataContext.SelectModule, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding Id}" />
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>

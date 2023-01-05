@@ -1,7 +1,11 @@
 ﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Standard.Tool.Platform.Auth;
 using Standard.Tool.Platform.Auth.AccountFeature;
+using Standard.Tool.Platform.Extension;
 using Standard.Tool.Platform.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -147,7 +151,7 @@ public class AccountPageViewModel : ObservableObject
     #region 03，AssignUserPermissions
     void AssignUserPermissionsExecute(string userId)
     {
-
+        ProviderFactory.ServiceProvider?.GetRequiredService<AssignUserPermissionPage>()?.Show();
     }
 
     bool CanAssignUserPermissionsExecute(string userId)
