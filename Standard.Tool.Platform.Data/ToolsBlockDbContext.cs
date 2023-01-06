@@ -34,20 +34,6 @@ namespace Standard.Tool.Platform.Data
             modelBuilder.ApplyConfiguration(new MenuConfiguration());
             modelBuilder.ApplyConfiguration(new SubMenuConfiguration());
 
-
-            modelBuilder.Entity<AccountPermissionEntity>()
-           .HasKey(t => new { t.UserId, t.PermissionId });
-
-            modelBuilder.Entity<AccountPermissionEntity>()
-                .HasOne(pt => pt.Account)
-                .WithMany(p => p.AccountPermissions)
-                .HasForeignKey(pt => pt.UserId);
-
-            modelBuilder.Entity<AccountPermissionEntity>()
-                .HasOne(pt => pt.Permission)
-                .WithMany(t => t.AccountPermissions)
-                .HasForeignKey(pt => pt.PermissionId);
-
         }
     }
 

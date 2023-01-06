@@ -3,6 +3,7 @@ using NPOI.POIFS.Properties;
 using Standard.Tool.Platform.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Standard.Tool.Platform.Data;
@@ -15,9 +16,34 @@ public class Seed
 
         try
         {
-            await dbContext.Account.AddRangeAsync(GetAccounts());
+            //await dbContext.Account.AddRangeAsync(GetAccounts());
 
             await dbContext.Permission.AddRangeAsync(GetPermissions());
+
+            await dbContext.SaveChangesAsync();
+
+
+
+
+            var account = new AccountEntity()
+            {
+                Id = Guid.NewGuid(),
+                UserName = "超级管理员",
+                LoginName = "admin",
+                PasswordHash = "JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=",
+                Status = "Enable",
+                CreateTimeUtc = DateTime.UtcNow
+            };
+            foreach (var item in dbContext.Permission)
+            {
+                account.AccountPermissions.Add(new()
+                {
+                    AccountId = account.Id,
+                    PermissionId = item.Id
+                });
+            }
+            await dbContext.Account.AddAsync(account);
+
 
             await dbContext.SaveChangesAsync();
         }
