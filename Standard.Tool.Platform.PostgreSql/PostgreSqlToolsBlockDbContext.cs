@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Standard.Tool.Platform.Data;
+using Standard.Tool.Platform.PostgreSql.Configurations;
 using System;
 using System.Reflection.Emit;
 
@@ -18,6 +19,7 @@ namespace Standard.Tool.Platform.PostgreSql
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new AccountPermissionConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
