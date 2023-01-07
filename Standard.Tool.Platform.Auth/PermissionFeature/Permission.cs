@@ -31,7 +31,7 @@ namespace Standard.Tool.Platform.Auth.PermissionFeature
         /// <summary>
         /// 是否选中
         /// </summary>
-        public int IsSelected { get; set; }
+        public bool IsSelected { get; set; }
 
         /// <summary>
         /// GUID

@@ -24,22 +24,6 @@ namespace Standard.Tool.Platform.Pages.Account
         public AssignUserPermissionPageViewModel(IMediator mediator)
         {
             _mediator = mediator;
-            SearchExecute();
-
-            //IEnumerable<TypeValue> list = new List<TypeValue>()
-            //{
-            //    new() { Name = "用户信息列表", Value = "1",Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "编辑", IsSelected=false},new PermissionValue { DisplayName = "新增", IsSelected = false } } },
-            //    new() { Name = "权限信息列表", Value = "2" ,Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "新增", IsSelected = false } } },
-            //    new() { Name = "角色信息列表", Value = "3",Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "删除", IsSelected = false } }  },
-            //     new() { Name = "马六", Value = "1",Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "Test4", IsSelected = false } }  },
-            //    new() { Name = "田七", Value = "2",Permissions=new List<PermissionValue>{ new PermissionValue {  DisplayName = "Test5", IsSelected = false } }  },
-            //    new() { Name = "mama", Value = "3",Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "Test6", IsSelected = false } }  },
-            //    new() { Name = "mama", Value = "3",Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "Test7", IsSelected = false } }  },
-            //     new() { Name = "baba", Value = "1",Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "Test8", IsSelected = false } }  },
-            //    new() { Name = "nainai", Value = "2",Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "Test9", IsSelected = false } }  },
-            //    new() { Name = "yeye", Value = "3",Permissions=new List<PermissionValue>{ new PermissionValue { DisplayName = "Test10", IsSelected = false } }  }
-            //};
-            //ListName = new ObservableCollection<TypeValue>(list);
         }
 
 
@@ -73,6 +57,10 @@ namespace Standard.Tool.Platform.Pages.Account
         }
         #endregion
 
+        #region Account
+        public AuthCore.AccountFeature.Account Account {get; set;}
+        #endregion
+
         #endregion
 
         #region 方法
@@ -85,6 +73,28 @@ namespace Standard.Tool.Platform.Pages.Account
             {
                 var dataList = await _mediator.Send(new ListPermissionsSegmentQuery(Guid.Parse(permissionId)));
                 PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList);
+
+
+                if (PermissionList == null) return;
+                if (Account.Permissions is { Length: > 0 })
+                {
+                    foreach (var permission in Account.Permissions)
+                    {
+                        //Page Levels
+                        if (PermissionList.Any(u => u.Id == permission.Id))
+                            PermissionList.ToList().ForEach(a => { a.IsSelected = true; });
+
+                        //Control Levels
+                        PermissionList.ToList().ForEach(a =>
+                        {
+                            if (a.Childrens is not null && a.Childrens.Count > 0)
+                            {
+                                if (a.Childrens.Any(u => u.Id == permission.Id))
+                                    a.Childrens.ForEach(b => { b.IsSelected = true; });
+                            }
+                        });
+                    }
+                }
             });
         }
 
@@ -125,7 +135,7 @@ namespace Standard.Tool.Platform.Pages.Account
         }
         #endregion
 
-        #region 03，关闭操作
+        #region 03，Closed
         public void CloseExecute()
         {
             ProviderFactory.ServiceProvider?.GetRequiredService<AssignUserPermissionPage>().Close();
@@ -142,7 +152,44 @@ namespace Standard.Tool.Platform.Pages.Account
         }
         #endregion
 
-        
+        #region 04，AccountPermission
+        public void QueryAccountById(string userId)
+        {
+            Task.Run(async
+                () =>
+            {
+                Account = await _mediator.Send(new GetAccountByIdQuery(Guid.Parse(userId)));
+                var permissionList = await _mediator.Send(new GetPermissionsQuery());
+
+                ModuleList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(permissionList.Where(u => u.ParentId == null));
+                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(permissionList.Where(u => u.ParentId != null && u.Type == PermissionType.Page));
+
+                if (PermissionList == null) return;
+                if (Account.Permissions is { Length: > 0 })
+                {
+                    foreach (var permission in Account.Permissions)
+                    {
+                        //Page Levels
+                        if (PermissionList.Any(u => u.Id == permission.Id))
+                            PermissionList.ToList().ForEach(a => { a.IsSelected = true; });
+
+                        //Control Levels
+                        PermissionList.ToList().ForEach(a =>
+                        {
+                            if (a.Childrens is not null && a.Childrens.Count > 0)
+                            {
+                                if (a.Childrens.Any(u => u.Id == permission.Id))
+                                    a.Childrens.ForEach(b => { b.IsSelected = true; });
+                            }
+                        });
+
+
+                    }
+                }
+
+            });
+        }
+        #endregion
 
         #endregion
     }

@@ -81,6 +81,9 @@ namespace Standard.Tool.Platform.Data.Infrastructure
     ISpecification<T> spec, Expression<Func<T, TResult>> selector) =>
     await ApplySpecification(spec).Select(selector).ToListAsync();
 
+        public async Task<TResult> FirstOrDefaultAsync<TResult>(
+        ISpecification<T> spec, Expression<Func<T, TResult>> selector) =>
+       await ApplySpecification(spec).AsNoTracking().Select(selector).FirstOrDefaultAsync();
 
         public IList<TResult> Select<TResult>(Expression<Func<T, TResult>> selector) =>
              DbContext.Set<T>().AsNoTracking().Select(selector).ToList();

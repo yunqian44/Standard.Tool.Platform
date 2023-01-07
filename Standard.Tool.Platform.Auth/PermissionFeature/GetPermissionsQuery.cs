@@ -23,7 +23,7 @@ public class GetPermissionsQueryHandler : IRequestHandler<GetPermissionsQuery, I
 
     public async Task<IList<Permission>> Handle(GetPermissionsQuery request, CancellationToken ct)
     {
-       return  await _repo.SelectAsync(p => new Permission
+       var data = await _repo.SelectAsync(p => new Permission
         {
             Id = p.Id.ToString().Trim(),
             CreateTimeUtc = p.CreateTimeUtc,
@@ -49,5 +49,6 @@ public class GetPermissionsQueryHandler : IRequestHandler<GetPermissionsQuery, I
                 LastModifiedTimeUtc = sm.LastModifiedTimeUtc,
             }).ToList()
         }, ct);
+        return data;
     }
 }

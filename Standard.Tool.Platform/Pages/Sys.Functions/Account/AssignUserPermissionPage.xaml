@@ -101,7 +101,7 @@
                                                             <ColumnDefinition Width="Auto"/>
                                                         </Grid.ColumnDefinitions>
                                                         <TextBlock FontSize="16" Margin="5"  FontWeight="Bold" Text="{Binding Name}" />
-                                                        <CheckBox Margin="5 0 0 0" Grid.Column="1" Style="{StaticResource gridCheckBox}"/>
+                                                        <CheckBox Margin="5 0 0 0" Grid.Column="1" IsChecked="{Binding IsSelected, Mode=TwoWay}" Style="{StaticResource gridCheckBox}"/>
                                                     </Grid>
                                                     <Border Grid.Row="0" Height="1" Width="150" CornerRadius="2" Background="#8A8886" Opacity="10"/>
                                                 </StackPanel>

@@ -8,7 +8,7 @@ namespace Standard.Tool.Platform.Data.Entities;
 
 public class AccountPermissionEntity
 {
-    public Guid UserId { get; set; }
+    public Guid AccountId { get; set; }
     public Guid PermissionId { get; set; }
 
     public virtual AccountEntity Account { get; set; }

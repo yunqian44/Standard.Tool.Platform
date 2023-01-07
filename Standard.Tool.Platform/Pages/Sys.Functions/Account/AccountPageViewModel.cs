@@ -151,7 +151,9 @@ public class AccountPageViewModel : ObservableObject
     #region 03，AssignUserPermissions
     void AssignUserPermissionsExecute(string userId)
     {
-        ProviderFactory.ServiceProvider?.GetRequiredService<AssignUserPermissionPage>()?.Show();
+        ProviderFactory.ServiceProvider?
+            .GetRequiredService<AssignUserPermissionPage>()?
+            .Init(userId).Show();
     }
 
     bool CanAssignUserPermissionsExecute(string userId)
@@ -164,6 +166,9 @@ public class AccountPageViewModel : ObservableObject
         get { return new RelayCommand<string>(AssignUserPermissionsExecute, CanAssignUserPermissionsExecute); }
     }
     #endregion
+
+
+
 
     #endregion
 }
