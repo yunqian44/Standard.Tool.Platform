@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -10,11 +11,18 @@ namespace Standard.Tool.Platform.Pages.Account;
 /// </summary>
 public partial class AssignUserPermissionPage : Window
 {
-    //IMediator _mediator;
+    AssignUserPermissionPageViewModel _assignUserPermissionPageViewModel;
     public AssignUserPermissionPage(IMediator mediator)
     {
         InitializeComponent();
-        DataContext = new AssignUserPermissionPageViewModel(mediator);
+        _assignUserPermissionPageViewModel= new AssignUserPermissionPageViewModel(mediator);
+        DataContext = _assignUserPermissionPageViewModel;
+    }
+
+    public AssignUserPermissionPage Init(string userId)
+    {
+        _assignUserPermissionPageViewModel.QueryAccountById(userId);
+        return this;
     }
 
     private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
