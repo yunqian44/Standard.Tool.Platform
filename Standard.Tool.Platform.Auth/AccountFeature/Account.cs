@@ -4,6 +4,7 @@ using Standard.Tool.Platform.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Standard.Tool.Platform.Auth.AccountFeature;
 
@@ -45,7 +46,7 @@ public class Account
     /// <summary>
     /// 权限
     /// </summary>
-    public List<Permission> Permissions { get; set; }
+    public Permission[] Permissions { get; set; }
 
     /// <summary>
     /// 最后登录时间
@@ -82,8 +83,28 @@ public class Account
             Code = sm.Permission.Code,
             Status = sm.Permission.Status,
             LastModifiedTimeUtc = sm.Permission.LastModifiedTimeUtc,
-        }).ToList();
+        }).ToArray();
     }
+
+    public static readonly Expression<Func<AccountEntity, Account>> EntitySelector = p => new()
+    {
+        Id = p.Id.ToString().Trim(),
+        CreateTimeUtc = p.CreateTimeUtc,
+        LastLoginTimeUtc = p.LastLoginTimeUtc.GetValueOrDefault(),
+        UserName = p.UserName.Trim(),
+        Status = p.Status.Trim(),
+        Permissions = p.AccountPermissions.Select(sm => new Permission
+        {
+            Id = sm.Permission.Id.ToString().Trim(),
+            Name=sm.Permission.Name,
+            Type= sm.Permission.Type,
+            TypeName=sm.Permission.Type.GetDescription(),
+            CreateTimeUtc= sm.Permission.CreateTimeUtc,
+            Code = sm.Permission.Code,
+            Status = sm.Permission.Status,
+            LastModifiedTimeUtc = sm.Permission.LastModifiedTimeUtc,
+        }).ToArray()
+    };
 }
 
 public class StatusValue
