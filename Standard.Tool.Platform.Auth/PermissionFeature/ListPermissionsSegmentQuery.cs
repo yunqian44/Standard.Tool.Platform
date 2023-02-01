@@ -60,7 +60,7 @@ namespace Standard.Tool.Platform.Auth.PermissionFeature
                     Status = sm.Status,
                     CreateTimeUtc = sm.CreateTimeUtc,
                     LastModifiedTimeUtc = sm.LastModifiedTimeUtc,
-                }).ToList()
+                }).ToArray()
             });
         }
     }
