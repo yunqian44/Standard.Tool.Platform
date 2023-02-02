@@ -45,7 +45,7 @@ namespace Standard.Tool.Platform.Data.Infrastructure
 
         Task<T> AddAsync(T entity, CancellationToken ct = default);
 
-        Task UpdateAsync(T entity, CancellationToken ct = default);
+        Task<int> UpdateAsync(T entity, CancellationToken ct = default);
 
         Task<int> AddRangeAsync(IEnumerable<T> entity);
     }

@@ -90,16 +90,15 @@ namespace Standard.Tool.Platform.Data.Infrastructure
 
         public async Task<T> AddAsync(T entity, CancellationToken ct = default)
         {
-            var s = await DbContext.Set<T>().AddAsync(entity, ct);
             var resultStatus = await DbContext.SaveChangesAsync(ct);
 
             return resultStatus == 1 ? entity : null;
         }
 
-        public async Task UpdateAsync(T entity, CancellationToken ct = default)
+        public async Task<int> UpdateAsync(T entity, CancellationToken ct = default)
         {
             DbContext.Entry(entity).State = EntityState.Modified;
-            await DbContext.SaveChangesAsync(ct);
+            return await DbContext.SaveChangesAsync(ct);
         }
 
         public async Task<int> AddRangeAsync(IEnumerable<T> entityList)
