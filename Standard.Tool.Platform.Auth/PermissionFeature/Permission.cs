@@ -25,35 +25,7 @@ public class Permission//: ObservableObject
     /// <summary>
     /// 是否选中
     /// </summary>
-    //private bool _isSelected;
-    //public bool IsSelected
-    //{
-    //    get { return _isSelected; }
-    //    set
-    //    {
-    //        _isSelected = value;
-    //        RaisePropertyChanged(nameof(IsSelected));
-    //    }
-    //}
-
-    /// <summary>
-    /// 是否选中
-    /// </summary>
     public bool IsSelected { get; set; }
-
-    /// <summary>
-    /// 是否显示
-    /// </summary>
-    //private bool _isShow;
-    //public bool IsShow
-    //{
-    //    get { return _isShow; }
-    //    set
-    //    {
-    //        _isShow = value;
-    //        RaisePropertyChanged(nameof(IsShow));
-    //    }
-    //}
 
 
     /// <summary>
