@@ -146,8 +146,8 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" Margin="0 5" Height="1"  CornerRadius="2" Background="#8A8886" Opacity="10"/>
                 <StackPanel Orientation="Horizontal" Margin="30 15" Grid.Row="1">
-                    <Button Style="{StaticResource operationDefaultButton}" Content="确定" />
-                    <Button Style="{StaticResource operationDefaultCancelButton}" Content="取消" />
+                    <Button Style="{StaticResource operationDefaultButton}" Content="确定" Command="{Binding Save}" />
+                    <Button Style="{StaticResource operationDefaultCancelButton}" Content="取消" Command="{Binding Close}" />
                 </StackPanel>
             </Grid>
         </Border>

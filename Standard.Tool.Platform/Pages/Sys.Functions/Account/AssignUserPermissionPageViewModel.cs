@@ -163,14 +163,11 @@ namespace Standard.Tool.Platform.Pages.Account
                          if (b.Id == a.Id)
                              a.IsSelected = b.IsSelected;
                      });
-
-                     //Control Levels
-
                  });
-                 #endregion
 
              });
         }
+        #endregion
 
 
         bool CanSelectModuleExecute(string permissionId)
@@ -264,6 +261,24 @@ namespace Standard.Tool.Platform.Pages.Account
 
                 PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(ShowPermissionList);
             });
+        }
+        #endregion
+
+        #region 05，Save
+        public void SaveExecute()
+        {
+            // to do
+
+        }
+
+        public bool CanSaveExecute()
+        {
+            return true;
+        }
+
+        public ICommand Save
+        {
+            get { return new RelayCommand(SaveExecute, CanSaveExecute); }
         }
         #endregion
     }
