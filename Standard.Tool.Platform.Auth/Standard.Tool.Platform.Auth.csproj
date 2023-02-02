@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Standard.Tool.Platform.Data\Standard.Tool.Platform.Data.csproj" />
+    <ProjectReference Include="..\Standard.Tool.Platform.MVVM\Standard.Tool.Platform.MVVM.csproj" />
   </ItemGroup>
 
 </Project>

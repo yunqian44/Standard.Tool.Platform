@@ -146,7 +146,7 @@
                                             <Button Style="{StaticResource gridRemoveButton}">
                                                 <materialDesign:PackIcon Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
                                             </Button>
-                                            <Button Style="{StaticResource gridRemoveButton}" Command="{Binding DataContext.AssignUserPermissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" CommandParameter="{Binding Id}">
+                                            <Button Style="{StaticResource gridRemoveButton}" Background="#E9BE11" BorderBrush="#E9BE11"  Command="{Binding DataContext.AssignUserPermissions, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" CommandParameter="{Binding Id}">
                                                 <materialDesign:PackIcon Kind="Account" Style="{StaticResource gridButtonIcon}" />
                                             </Button>
                                         </StackPanel>

@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AuthCore = Standard.Tool.Platform.Auth;
 using Standard.Tool.Platform.Auth.PermissionFeature;
 using Standard.Tool.Platform.Data.Entities;
+using NPOI.SS.Formula.Functions;
 
 namespace Standard.Tool.Platform.Pages.Account
 {
@@ -57,8 +58,36 @@ namespace Standard.Tool.Platform.Pages.Account
         }
         #endregion
 
+        #region ShowPermissionList
+        private ObservableCollection<AuthCore.PermissionFeature.Permission> _showPermissionList;
+
+        public ObservableCollection<AuthCore.PermissionFeature.Permission> ShowPermissionList
+        {
+            get { return _showPermissionList; }
+            set
+            {
+                _showPermissionList = value;
+                RaisePropertyChanged(nameof(ShowPermissionList));
+            }
+        }
+        #endregion
+
+        #region AllPermissionList
+        private ObservableCollection<AuthCore.PermissionFeature.Permission> _allPermissionList;
+
+        public ObservableCollection<AuthCore.PermissionFeature.Permission> AllPermissionList
+        {
+            get { return _allPermissionList; }
+            set
+            {
+                _allPermissionList = value;
+                RaisePropertyChanged(nameof(AllPermissionList));
+            }
+        }
+        #endregion
+
         #region Account
-        public AuthCore.AccountFeature.Account Account {get; set;}
+        public AuthCore.AccountFeature.Account Account { get; set; }
         #endregion
 
         #endregion
@@ -66,37 +95,80 @@ namespace Standard.Tool.Platform.Pages.Account
         #region 方法
 
         #region 01，SelectModule
-        void SelectModuleExecute(string permissionId)
+        async void SelectModuleExecute(string permissionId)
         {
-            Task.Run(async
-                () =>
-            {
-                var dataList = await _mediator.Send(new ListPermissionsSegmentQuery(Guid.Parse(permissionId)));
-                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList);
+            await Task.Run(async
+                 () =>
+             {
+
+                 if (ShowPermissionList == null) return;
+                 ShowPermissionList.ToList().ForEach(a =>
+                 {
+                     //Page Levels
+                     PermissionList.ToList().ForEach(b =>
+                     {
+                         if (b.Id == a.Id)
+                             b.IsSelected = a.IsSelected;
+                     });
+
+                     if (!a.IsSelected && AllPermissionList.Any(u=>u.Id==a.Id))
+                     {
+                         AllPermissionList.RemoveAt(Array.IndexOf(AllPermissionList.ToArray(), AllPermissionList.ToList().Find(p => p.Id == a.Id)));
+                     }
+                     else if (a.IsSelected && !AllPermissionList.Any(u => u.Id == a.Id))
+                     {
+                         AllPermissionList.Add(a);
+                     }
 
 
-                if (PermissionList == null) return;
-                if (Account.Permissions is { Length: > 0 })
-                {
-                    foreach (var permission in Account.Permissions)
-                    {
-                        //Page Levels
-                        if (PermissionList.Any(u => u.Id == permission.Id))
-                            PermissionList.ToList().ForEach(a => { a.IsSelected = true; });
+                     //Control Levels
+                     if (a.Childrens is { Length: > 0 })
+                     {
+                         a.Childrens.ToList().ForEach(c =>
+                         {
+                             PermissionList.ToList().ForEach(d =>
+                             {
+                                 if (d.Childrens is { Length: > 0 })
+                                 {
+                                     d.Childrens.ToList().ForEach(e =>
+                                     {
+                                         if (c.Id == e.Id)
+                                             e.IsSelected = c.IsSelected;
 
-                        //Control Levels
-                        PermissionList.ToList().ForEach(a =>
-                        {
-                            if (a.Childrens is not null && a.Childrens.Count > 0)
-                            {
-                                if (a.Childrens.Any(u => u.Id == permission.Id))
-                                    a.Childrens.ForEach(b => { b.IsSelected = true; });
-                            }
-                        });
-                    }
-                }
-            });
+                                         if (!e.IsSelected&& AllPermissionList.Any(u=>u.Id==e.Id))
+                                         {
+                                             AllPermissionList.RemoveAt(Array.IndexOf(AllPermissionList.ToArray(), AllPermissionList.ToList().Find(p=>p.Id==e.Id)));
+                                         }
+                                         else if (e.IsSelected && !AllPermissionList.Any(u=> u.Id == e.Id))
+                                         {
+                                             AllPermissionList.Add(e);
+                                         }
+                                     });
+                                 }
+
+                             });
+                         });
+                     }
+                 });
+
+
+                 ShowPermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(PermissionList.Where(u => u.ParentId == Guid.Parse(permissionId)));
+
+
+                 AllPermissionList.ToList().ForEach(a =>
+                 {
+                     //Page Levels
+                     PermissionList.ToList().ForEach(b =>
+                     {
+                         if (b.Id == a.Id)
+                             a.IsSelected = b.IsSelected;
+                     });
+                 });
+
+             });
         }
+        #endregion
+
 
         bool CanSelectModuleExecute(string permissionId)
         {
@@ -120,7 +192,7 @@ namespace Standard.Tool.Platform.Pages.Account
 
                 if (dataList == null) return;
                 ModuleList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList.Where(u => u.ParentId == null));
-                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList.Where(u => u.ParentId != null && u.Type == PermissionType.Page));
+                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList);
             });
         }
 
@@ -161,36 +233,53 @@ namespace Standard.Tool.Platform.Pages.Account
                 Account = await _mediator.Send(new GetAccountByIdQuery(Guid.Parse(userId)));
                 var permissionList = await _mediator.Send(new GetPermissionsQuery());
 
+                AllPermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(permissionList);
                 ModuleList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(permissionList.Where(u => u.ParentId == null));
-                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(permissionList.Where(u => u.ParentId != null && u.Type == PermissionType.Page));
+                ShowPermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(permissionList.Where(u => u.ParentId != null && u.Type == PermissionType.Page));
 
-                if (PermissionList == null) return;
+                //Judge Page CheckBox and Control CheckBox Whether IsChecked
+                if (ShowPermissionList == null) return;
                 if (Account.Permissions is { Length: > 0 })
                 {
                     foreach (var permission in Account.Permissions)
                     {
                         //Page Levels
-                        if (PermissionList.Any(u => u.Id == permission.Id))
-                            PermissionList.ToList().ForEach(a => { a.IsSelected = true; });
+                        if (ShowPermissionList.Any(u => u.Id == permission.Id))
+                            ShowPermissionList.ToList().ForEach(a => { a.IsSelected = true; });
 
                         //Control Levels
-                        PermissionList.ToList().ForEach(a =>
+                        ShowPermissionList.ToList().ForEach(a =>
                         {
-                            if (a.Childrens is not null && a.Childrens.Count > 0)
+                            if (a.Childrens is { Length: > 0 })
                             {
                                 if (a.Childrens.Any(u => u.Id == permission.Id))
-                                    a.Childrens.ForEach(b => { b.IsSelected = true; });
+                                    a.Childrens.ToList().ForEach(b => { b.IsSelected = true; });
                             }
                         });
-
-
                     }
                 }
 
+                PermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(ShowPermissionList);
             });
         }
         #endregion
 
+        #region 05，Save
+        public void SaveExecute()
+        {
+            // to do
+
+        }
+
+        public bool CanSaveExecute()
+        {
+            return true;
+        }
+
+        public ICommand Save
+        {
+            get { return new RelayCommand(SaveExecute, CanSaveExecute); }
+        }
         #endregion
     }
 }

@@ -4,23 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Standard.Tool.Platform.Common.Converters;
 
-public class AccountStatusConverter : IValueConverter
+public class VisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        string sRet = "";
+        Visibility sRet = Visibility.Visible;
         if (value != null)
         {
-            sRet = value.ToString().ToLower() switch
-            {
-                "enable" => string.Format("启用"),
-                "disable" => string.Format("禁用"),
-                _ => throw new NotFoundException("Invalide status types,")
-            };
+            sRet = (bool)value ? Visibility.Visible : Visibility.Hidden;
         }
         return sRet;
     }
