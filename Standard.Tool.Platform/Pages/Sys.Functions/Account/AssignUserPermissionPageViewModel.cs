@@ -16,6 +16,8 @@ using AuthCore = Standard.Tool.Platform.Auth;
 using Standard.Tool.Platform.Auth.PermissionFeature;
 using Standard.Tool.Platform.Data.Entities;
 using NPOI.SS.Formula.Functions;
+using Standard.Tool.Platform.Materials;
+using NPOI.HSSF.Record.PivotTable;
 
 namespace Standard.Tool.Platform.Pages.Account
 {
@@ -167,7 +169,6 @@ namespace Standard.Tool.Platform.Pages.Account
 
              });
         }
-        #endregion
 
 
         bool CanSelectModuleExecute(string permissionId)
@@ -182,10 +183,10 @@ namespace Standard.Tool.Platform.Pages.Account
         #endregion
 
         #region 02，Search
-        void SearchExecute()
+        async void SearchExecute()
         {
             IList<AuthCore.PermissionFeature.Permission> dataList = null;
-            Task.Run(async
+           await Task.Run(async
                 () =>
             {
                 dataList = await _mediator.Send(new GetPermissionsQuery());
@@ -225,9 +226,9 @@ namespace Standard.Tool.Platform.Pages.Account
         #endregion
 
         #region 04，AccountPermission
-        public void QueryAccountById(string userId)
+        public async void QueryAccountById(string userId)
         {
-            Task.Run(async
+           await Task.Run(async
                 () =>
             {
                 Account = await _mediator.Send(new GetAccountByIdQuery(Guid.Parse(userId)));
@@ -268,7 +269,15 @@ namespace Standard.Tool.Platform.Pages.Account
         public void SaveExecute()
         {
             // to do
-
+            var ids = AllPermissionList.Select(u => Guid.Parse(u.Id)).ToArray();
+            var request = new EditAccountPermissionRequest(ids);
+            if (request.IsValid())
+            {
+                Task.Run(async () =>
+                {
+                    var exportResult = await _mediator.Send(new UpdateAccountCommand(Guid.Parse(Account.Id), request));
+                });
+            }
         }
 
         public bool CanSaveExecute()
@@ -281,5 +290,9 @@ namespace Standard.Tool.Platform.Pages.Account
             get { return new RelayCommand(SaveExecute, CanSaveExecute); }
         }
         #endregion
+
+        #endregion
+
+
     }
 }
