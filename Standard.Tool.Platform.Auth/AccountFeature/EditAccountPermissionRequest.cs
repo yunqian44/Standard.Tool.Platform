@@ -2,7 +2,7 @@
 using FluentValidation.Results;
 using Standard.Tool.Platform.Auth.PermissionFeature.Validations;
 
-namespace Standard.Tool.Platform.Auth.PermissionFeature;
+namespace Standard.Tool.Platform.Auth.AccountFeature;
 
 public class EditAccountPermissionRequest
 {

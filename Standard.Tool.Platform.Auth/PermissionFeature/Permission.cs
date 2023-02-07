@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Standard.Tool.Platform.Auth.PermissionFeature;
 
-public class Permission//: ObservableObject
+public class Permission: ObservableObject
 {
 
     private int _no;
@@ -25,7 +25,16 @@ public class Permission//: ObservableObject
     /// <summary>
     /// 是否选中
     /// </summary>
-    public bool IsSelected { get; set; }
+    private bool _isSelected;
+    public bool IsSelected
+    {
+        get { return _isSelected; }
+        set
+        {
+            _isSelected = value;
+            RaisePropertyChanged(nameof(IsSelected));
+        }
+    }
 
 
     /// <summary>

@@ -14,22 +14,22 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Standard.Tool.Platform.Auth.PermissionFeature;
+namespace Standard.Tool.Platform.Auth.AccountFeature;
 
-public record UpdateAccountPermissionCommand(Guid Id, EditAccountPermissionRequest Payload) : IRequest<ImportResult>;
-public class UpdateAccountPermissionCommandHandler : IRequestHandler<UpdateAccountPermissionCommand, ImportResult>
+public record UpdateAccountCommand(Guid Id, EditAccountPermissionRequest Payload) : IRequest<ImportResult>;
+public class UpdateAccountCommandHandler : IRequestHandler<UpdateAccountCommand, ImportResult>
 {
     //private readonly IRepository<AccountPermissionEntity> _repo;
 
     private readonly IRepository<AccountEntity> _repo;
 
-    public UpdateAccountPermissionCommandHandler(IRepository<AccountEntity> repo) => _repo = repo;
+    public UpdateAccountCommandHandler(IRepository<AccountEntity> repo) => _repo = repo;
     //{
     //    _accountRepo = accountRepo;
     //    _repo = repo;
     //}
 
-    public async Task<ImportResult> Handle(UpdateAccountPermissionCommand request, CancellationToken ct)
+    public async Task<ImportResult> Handle(UpdateAccountCommand request, CancellationToken ct)
     {
         var insertResult = new ImportResult();
 
@@ -53,6 +53,7 @@ public class UpdateAccountPermissionCommandHandler : IRequestHandler<UpdateAccou
             }
         }
 
+        //insertResult.Succeeded = _repo.Update(account) == 1 ? true : false;
         insertResult.Succeeded = await _repo.UpdateAsync(account, ct) == 1 ? true : false;
         insertResult.Message = insertResult.Succeeded ? string.Empty : "";
         return await Task.FromResult(insertResult);

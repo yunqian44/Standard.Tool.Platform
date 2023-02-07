@@ -101,6 +101,12 @@ namespace Standard.Tool.Platform.Data.Infrastructure
             return await DbContext.SaveChangesAsync(ct);
         }
 
+        public int Update(T entity)
+        {
+            DbContext.Entry(entity).State = EntityState.Modified;
+            return DbContext.SaveChanges();
+        }
+
         public async Task<int> AddRangeAsync(IEnumerable<T> entityList)
         {
             await DbContext.Set<T>().AddRangeAsync(entityList);
