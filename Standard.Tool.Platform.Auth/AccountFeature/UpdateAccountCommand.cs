@@ -53,6 +53,7 @@ public class UpdateAccountCommandHandler : IRequestHandler<UpdateAccountCommand,
             }
         }
 
+        //insertResult.Succeeded = _repo.Update(account) == 1 ? true : false;
         insertResult.Succeeded = await _repo.UpdateAsync(account, ct) == 1 ? true : false;
         insertResult.Message = insertResult.Succeeded ? string.Empty : "";
         return await Task.FromResult(insertResult);
