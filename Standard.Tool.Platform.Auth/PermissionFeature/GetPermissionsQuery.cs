@@ -23,7 +23,7 @@ public class GetPermissionsQueryHandler : IRequestHandler<GetPermissionsQuery, I
 
     public async Task<IList<Permission>> Handle(GetPermissionsQuery request, CancellationToken ct)
     {
-        var data = await _repo.SelectAsync(p => new Permission
+        var data = await _repo.SelectAsync((p) => new Permission
         {
             Id = p.Id.ToString().Trim(),
             //IsShow = true,
@@ -39,7 +39,6 @@ public class GetPermissionsQueryHandler : IRequestHandler<GetPermissionsQuery, I
             LastModifiedTimeUtc = p.LastModifiedTimeUtc,
             Childrens = p.Childrens.Select(sm => new Permission
             {
-                //IsShow= true,   
                 Id = sm.Id.ToString().Trim(),
                 Code = sm.Code,
                 Name = sm.Name,
@@ -50,7 +49,7 @@ public class GetPermissionsQueryHandler : IRequestHandler<GetPermissionsQuery, I
                 CreateTimeUtc = sm.CreateTimeUtc,
                 LastModifiedTimeUtc = sm.LastModifiedTimeUtc,
             }).ToArray()
-        }, ct);  
+        }, ct); ;  
         return data;
     }
 }
