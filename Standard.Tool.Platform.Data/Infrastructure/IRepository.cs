@@ -21,13 +21,13 @@ namespace Standard.Tool.Platform.Data.Infrastructure
 
         IQueryable<T> AsQueryable();
 
-        Task DeleteAsync(T entity, CancellationToken ct = default);
+        Task<int> DeleteAsync(T entity, CancellationToken ct = default);
 
-        Task DeleteAsync(CancellationToken ct = default);
+        Task<int> DeleteAsync(CancellationToken ct = default);
 
         Task DeleteAsync(IEnumerable<T> entities, CancellationToken ct = default);
 
-        Task DeleteAsync(object key, CancellationToken ct = default);
+        Task<int> DeleteAsync(object key, CancellationToken ct = default);
 
         Task<int> CountAsync(ISpecification<T> spec = null, CancellationToken ct = default);
 
