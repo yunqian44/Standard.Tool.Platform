@@ -6,35 +6,18 @@ using System.Collections.Generic;
 
 namespace Standard.Tool.Platform.Auth.PermissionFeature;
 
-public class Permission: ObservableObject
+public class Permission//: ObservableObject
 {
-
-    private int _no;
     /// <summary>
     /// 序号
     /// </summary>
-    public int No
-    {
-        get { return _no; }
-        set
-        {
-            _no = ++value;
-        }
-    }
+    public int No { get; set; }
+
 
     /// <summary>
     /// 是否选中
     /// </summary>
-    private bool _isSelected;
-    public bool IsSelected
-    {
-        get { return _isSelected; }
-        set
-        {
-            _isSelected = value;
-            RaisePropertyChanged(nameof(IsSelected));
-        }
-    }
+    public bool IsSelected { get; set; }
 
 
     /// <summary>

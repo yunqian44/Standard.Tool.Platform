@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace Standard.Tool.Platform.Data.Infrastructure
 {
@@ -41,10 +42,10 @@ namespace Standard.Tool.Platform.Data.Infrastructure
 
         public IQueryable<T> AsQueryable() => DbContext.Set<T>();
 
-        public async Task DeleteAsync(T entity, CancellationToken ct = default)
+        public async Task<int> DeleteAsync(T entity, CancellationToken ct = default)
         {
             DbContext.Set<T>().Remove(entity);
-            await DbContext.SaveChangesAsync(ct);
+            return await  DbContext.SaveChangesAsync(ct);
         }
 
         public Task DeleteAsync(IEnumerable<T> entities, CancellationToken ct = default)
@@ -54,16 +55,18 @@ namespace Standard.Tool.Platform.Data.Infrastructure
         }
 
 
-        public Task DeleteAsync(CancellationToken ct = default)
+        public Task<int> DeleteAsync(CancellationToken ct = default)
         {
             DbContext.Set<T>().RemoveRange();
             return DbContext.SaveChangesAsync(ct);
         }
 
-        public async Task DeleteAsync(object key, CancellationToken ct = default)
+        public async Task<int> DeleteAsync(object key, CancellationToken ct = default)
         {
             var entity = await GetAsync(key, ct);
-            if (entity is not null) await DeleteAsync(entity, ct);
+            if (entity is not null) 
+                return await DeleteAsync(entity, ct);
+            return -1;
         }
 
         public Task<int> CountAsync(Expression<Func<T, bool>> condition, CancellationToken ct = default) =>
