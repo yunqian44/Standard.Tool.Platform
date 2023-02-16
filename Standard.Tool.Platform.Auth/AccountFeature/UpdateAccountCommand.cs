@@ -19,15 +19,9 @@ namespace Standard.Tool.Platform.Auth.AccountFeature;
 public record UpdateAccountCommand(Guid Id, EditAccountPermissionRequest Payload) : IRequest<ImportResult>;
 public class UpdateAccountCommandHandler : IRequestHandler<UpdateAccountCommand, ImportResult>
 {
-    //private readonly IRepository<AccountPermissionEntity> _repo;
-
     private readonly IRepository<AccountEntity> _repo;
 
     public UpdateAccountCommandHandler(IRepository<AccountEntity> repo) => _repo = repo;
-    //{
-    //    _accountRepo = accountRepo;
-    //    _repo = repo;
-    //}
 
     public async Task<ImportResult> Handle(UpdateAccountCommand request, CancellationToken ct)
     {
