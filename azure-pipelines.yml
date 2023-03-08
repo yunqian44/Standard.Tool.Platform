@@ -20,6 +20,13 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarQube_Cloud'
+    organization: 'sonarqubetestpro'
+    scannerMode: 'MSBuild'
+    projectKey: 'AllenMaster_NetCore_SonarQube_Sample'
+    projectName: 'NetCore_SonarQube_Sample'
 
 - task: VSBuild@1
   inputs:
@@ -31,3 +38,9 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
