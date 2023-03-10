@@ -59,7 +59,7 @@
       },
       {
         "Name": "物料主数据导入",
-        "ScreenName": null
+        "ScreenName": "MaterialDataOperatePage"
       },
       {
         "Name": "物料清单倒入",
