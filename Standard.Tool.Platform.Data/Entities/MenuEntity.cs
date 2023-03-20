@@ -16,13 +16,9 @@ namespace Standard.Tool.Platform.Data.Entities
 
         public string Title { get; set; }
 
-        public string Url { get; set; }
-
         public string Icon { get; set; }
 
         public int DisplayOrder { get; set; }
-
-        public bool IsOpenInNewTab { get; set; }
 
         public virtual ICollection<SubMenuEntity> SubMenus { get; set; }
     }
@@ -33,7 +29,6 @@ namespace Standard.Tool.Platform.Data.Entities
         {
             builder.Property(e => e.Id).ValueGeneratedNever();
             builder.Property(e => e.Title).HasMaxLength(64);
-            builder.Property(e => e.Url).HasMaxLength(256);
             builder.Property(e => e.Icon).HasMaxLength(64);
         }
     }
