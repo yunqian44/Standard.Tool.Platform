@@ -11,7 +11,6 @@ namespace Standard.Tool.Platform.Menus
         public Menu() 
         {
             SubMenus = new();
-            Icon = "icon-file-text2";
         }
 
         public Menu(MenuEntity entity)
@@ -22,14 +21,12 @@ namespace Standard.Tool.Platform.Menus
             Title = entity.Title.Trim();
             DisplayOrder = entity.DisplayOrder;
             Icon = entity.Icon.Trim();
-            //Url = entity.Url?.Trim();
-            IsOpenInNewTab = entity.IsOpenInNewTab;
             SubMenus = entity.SubMenus.Select(sm => new SubMenu
             {
                 Id = sm.Id,
-                Title = sm.Title,
-                Url = sm.Url,
-                IsOpenInNewTab = sm.IsOpenInNewTab
+                Name = sm.Name,
+                ScreenName = sm.ScreenName,
+                DisplayOrder = sm.DisplayOrder
             }).ToList();
         }
 
@@ -38,8 +35,6 @@ namespace Standard.Tool.Platform.Menus
         public string Title { get; set; }
 
         public string Icon { get; set; }
-
-        public bool IsOpenInNewTab { get; set; }
 
         public int DisplayOrder { get; set; }
 
