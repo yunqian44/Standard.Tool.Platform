@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using Standard.Tool.Platform.Auth.AccountFeature;
 using Standard.Tool.Platform.Auth.PermissionFeature;
+using Standard.Tool.Platform.Common.Helper;
 using Standard.Tool.Platform.CommonPage;
 using Standard.Tool.Platform.MVVM;
+using Standard.Tool.Platform.Pages.Account;
+using Standard.Tool.Platform.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,9 +20,11 @@ namespace Standard.Tool.Platform.Pages.Permission
     public class PermissionPageViewModel : ObservableObject
     {
         private readonly IMediator _mediator;
-        public PermissionPageViewModel(IMediator mediator)
+        private PermissionPage _permissionPage;
+        public PermissionPageViewModel(PermissionPage permissionPage, IMediator mediator)
         {
             _mediator = mediator;
+            _permissionPage = permissionPage;
             RefreshExecute();
             SearchExecute();
         }
@@ -137,6 +142,12 @@ namespace Standard.Tool.Platform.Pages.Permission
 
                 if (dataList != null)
                     PermissionList = new ObservableCollection<PermissionCore.Permission>(dataList);
+
+                if (5 > 0)
+                {
+
+                    //_permissionPage.Paging.Children.Add(new UserControlPaging(5));
+                }
             });
         }
 
