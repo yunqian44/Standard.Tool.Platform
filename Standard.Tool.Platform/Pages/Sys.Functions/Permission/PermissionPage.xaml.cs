@@ -25,7 +25,8 @@ namespace Standard.Tool.Platform.Pages.Account
         public PermissionPage(IMediator mediator)
         {
             InitializeComponent();
-            DataContext = new PermissionPageViewModel(this,mediator);
+            DataContext = new PermissionPageViewModel(mediator);
+
         }
     }
 }

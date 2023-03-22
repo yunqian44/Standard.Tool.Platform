@@ -20,11 +20,12 @@ namespace Standard.Tool.Platform.Pages.Permission
     public class PermissionPageViewModel : ObservableObject
     {
         private readonly IMediator _mediator;
-        private PermissionPage _permissionPage;
-        public PermissionPageViewModel(PermissionPage permissionPage, IMediator mediator)
+        public PermissionPageViewModel( IMediator mediator)
         {
             _mediator = mediator;
-            _permissionPage = permissionPage;
+            PageIndex = 1;
+            PageSize = 10;
+
             RefreshExecute();
             SearchExecute();
         }
@@ -96,9 +97,47 @@ namespace Standard.Tool.Platform.Pages.Permission
         }
         #endregion
 
+        #region PageIndex
+        private int _pageIndex;
+        public int PageIndex
+        {
+            get { return _pageIndex; }
+            set
+            {
+                _pageIndex = value;
+                RaisePropertyChanged(nameof(PageIndex));
+                SearchExecute();
+            }
+        }
         #endregion
 
+        #region PageSize
+        private int _pageSize;
+        public int PageSize
+        {
+            get { return _pageSize; }
+            set
+            {
+                _pageSize = value;
+                RaisePropertyChanged(nameof(PageSize));
+            }
+        }
+        #endregion
 
+        #region TotalCount
+        private int _totalCount;
+        public int TotalCount
+        {
+            get { return _totalCount; }
+            set
+            {
+                _totalCount = value;
+                RaisePropertyChanged(nameof(TotalCount));
+            }
+        }
+        #endregion
+
+        #endregion
 
         #region Method
 
@@ -138,16 +177,14 @@ namespace Standard.Tool.Platform.Pages.Permission
                 () =>
             {
 
-                dataList = await _mediator.Send(new GetPermissionsQuery());
+                TotalCount = await _mediator.Send(new CountPermissionsQuery());
+
+                dataList = await _mediator.Send(new GetPermissionsQuery(PageIndex,PageSize));
 
                 if (dataList != null)
                     PermissionList = new ObservableCollection<PermissionCore.Permission>(dataList);
 
-                if (5 > 0)
-                {
-
-                    //_permissionPage.Paging.Children.Add(new UserControlPaging(5));
-                }
+                
             });
         }
 
