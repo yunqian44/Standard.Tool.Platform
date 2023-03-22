@@ -20,7 +20,7 @@ namespace Standard.Tool.Platform.UserControls
     /// </summary>
     public partial class UserControlPaging : UserControl
     {
-        public UserControlPaging()
+        public UserControlPaging(int pageCount)
         {
             InitializeComponent();
         }

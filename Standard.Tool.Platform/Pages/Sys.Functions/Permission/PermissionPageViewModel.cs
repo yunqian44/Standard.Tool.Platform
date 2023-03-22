@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using Standard.Tool.Platform.Auth.AccountFeature;
 using Standard.Tool.Platform.Auth.PermissionFeature;
+using Standard.Tool.Platform.Common.Helper;
 using Standard.Tool.Platform.CommonPage;
 using Standard.Tool.Platform.MVVM;
+using Standard.Tool.Platform.Pages.Account;
+using Standard.Tool.Platform.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,9 +20,12 @@ namespace Standard.Tool.Platform.Pages.Permission
     public class PermissionPageViewModel : ObservableObject
     {
         private readonly IMediator _mediator;
-        public PermissionPageViewModel(IMediator mediator)
+        public PermissionPageViewModel( IMediator mediator)
         {
             _mediator = mediator;
+            PageIndex = 1;
+            PageSize = 10;
+
             RefreshExecute();
             SearchExecute();
         }
@@ -91,9 +97,47 @@ namespace Standard.Tool.Platform.Pages.Permission
         }
         #endregion
 
+        #region PageIndex
+        private int _pageIndex;
+        public int PageIndex
+        {
+            get { return _pageIndex; }
+            set
+            {
+                _pageIndex = value;
+                RaisePropertyChanged(nameof(PageIndex));
+                SearchExecute();
+            }
+        }
         #endregion
 
+        #region PageSize
+        private int _pageSize;
+        public int PageSize
+        {
+            get { return _pageSize; }
+            set
+            {
+                _pageSize = value;
+                RaisePropertyChanged(nameof(PageSize));
+            }
+        }
+        #endregion
 
+        #region TotalCount
+        private int _totalCount;
+        public int TotalCount
+        {
+            get { return _totalCount; }
+            set
+            {
+                _totalCount = value;
+                RaisePropertyChanged(nameof(TotalCount));
+            }
+        }
+        #endregion
+
+        #endregion
 
         #region Method
 
@@ -133,10 +177,14 @@ namespace Standard.Tool.Platform.Pages.Permission
                 () =>
             {
 
-                dataList = await _mediator.Send(new GetPermissionsQuery());
+                TotalCount = await _mediator.Send(new CountPermissionsQuery());
+
+                dataList = await _mediator.Send(new GetPermissionsQuery(PageIndex,PageSize));
 
                 if (dataList != null)
                     PermissionList = new ObservableCollection<PermissionCore.Permission>(dataList);
+
+                
             });
         }
 

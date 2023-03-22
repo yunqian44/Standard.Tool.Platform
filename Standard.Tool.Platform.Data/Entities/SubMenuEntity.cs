@@ -13,11 +13,11 @@ namespace Standard.Tool.Platform.Data.Entities
     {
         public Guid Id { get; set; }
 
-        public string Title { get; set; }
+        public string Name { get; set; }
 
-        public string Url { get; set; }
+        public string ScreenName { get; set; }
 
-        public bool IsOpenInNewTab { get; set; }
+        public int DisplayOrder { get; set; }
 
         public Guid MenuId { get; set; }
 
@@ -29,8 +29,7 @@ namespace Standard.Tool.Platform.Data.Entities
         public void Configure(EntityTypeBuilder<SubMenuEntity> builder)
         {
             builder.Property(e => e.Id).ValueGeneratedNever();
-            builder.Property(e => e.Title).HasMaxLength(64);
-            builder.Property(e => e.Url).HasMaxLength(256);
+            builder.Property(e => e.Name).HasMaxLength(64);
             builder.HasOne(d => d.Menu)
                 .WithMany(p => p.SubMenus)
                 .HasForeignKey(d => d.MenuId);

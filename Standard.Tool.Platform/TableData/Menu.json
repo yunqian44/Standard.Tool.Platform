@@ -51,7 +51,7 @@
     "SubItems": [
       {
         "Name": "用户批量导入",
-        "ScreenName": null
+        "ScreenName": "UserDataOperatePage"
       },
       {
         "Name": "客制化权限导入",
@@ -59,10 +59,10 @@
       },
       {
         "Name": "物料主数据导入",
-        "ScreenName": null
+        "ScreenName": "MaterialDataOperatePage"
       },
       {
-        "Name": "物料清单倒入",
+        "Name": "物料清单导入",
         "ScreenName": null
       },
       {

@@ -16,6 +16,7 @@ using Standard.Tool.Platform.CommonPage;
 using Standard.Tool.Platform.Auth.AccountFeature;
 using Standard.Tool.Platform.Auth.PermissionFeature;
 using Standard.Tool.Platform.Pages.Project.Application.Material;
+using Standard.Tool.Platform.Pages.Project.Application.User;
 
 namespace Standard.Tool.Platform;
 
@@ -59,6 +60,7 @@ public partial class App : Application
             services.AddSingleton<PermissionPage>();
             services.AddSingleton<AssignUserPermissionPage>();
             services.AddSingleton<MaterialDataOperatePage>();
+            services.AddSingleton<UserDataOperatePage>();
 
 
             services.AddTransient<Account>();
