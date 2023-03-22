@@ -3,6 +3,8 @@ using Standard.Tool.Platform.Data.Entities;
 using Standard.Tool.Platform.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Standard.Tool.Platform.Auth.PermissionFeature;
 
@@ -92,6 +94,33 @@ public class Permission//: ObservableObject
             LastModifiedTimeUtc = entity.Parent.LastModifiedTimeUtc;
         }
     }
+
+    public static Expression<Func<PermissionEntity, Permission>> EntitySelector => p => new()
+    {
+        Id = p.Id.ToString().Trim(),
+        CreateTimeUtc = p.CreateTimeUtc,
+        Code = p.Code,
+        Name = p.Name,
+        Type = p.Type,
+        TypeName = p.Type.GetDescription(),
+        ParentId = p.ParentId,
+        Status = p.Status,
+        No = 0,
+        Parent = new Permission(p.Parent),
+        LastModifiedTimeUtc = p.LastModifiedTimeUtc,
+        Childrens = p.Childrens.Select(sm => new Permission
+        {
+            Id = sm.Id.ToString().Trim(),
+            Code = sm.Code,
+            Name = sm.Name,
+            Type = sm.Type,
+            TypeName = sm.Type.GetDescription(),
+            ParentId = sm.ParentId,
+            Status = sm.Status,
+            CreateTimeUtc = sm.CreateTimeUtc,
+            LastModifiedTimeUtc = sm.LastModifiedTimeUtc,
+        }).ToArray()
+    };
 
     public Permission()
     {
