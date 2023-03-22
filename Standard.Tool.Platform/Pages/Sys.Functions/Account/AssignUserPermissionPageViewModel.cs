@@ -216,7 +216,7 @@ namespace Standard.Tool.Platform.Pages.Account
             await Task.Run(async
                  () =>
              {
-                 dataList = await _mediator.Send(new GetPermissionsQuery());
+                 dataList = await _mediator.Send(new ListPermissionsQuery());
 
                  if (dataList == null) return;
                  ModuleList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(dataList.Where(u => u.ParentId == null));
@@ -259,7 +259,7 @@ namespace Standard.Tool.Platform.Pages.Account
                  () =>
              {
                  Account = await _mediator.Send(new GetAccountByIdQuery(Guid.Parse(userId)));
-                 var permissionList = await _mediator.Send(new GetPermissionsQuery());
+                 var permissionList = await _mediator.Send(new ListPermissionsQuery());
 
                  AllPermissionList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(permissionList);
                  ModuleList = new ObservableCollection<AuthCore.PermissionFeature.Permission>(permissionList.Where(u => u.ParentId == null));

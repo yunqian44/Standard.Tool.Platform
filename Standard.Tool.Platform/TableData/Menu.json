@@ -51,7 +51,7 @@
     "SubItems": [
       {
         "Name": "用户批量导入",
-        "ScreenName": null
+        "ScreenName": "UserDataOperatePage"
       },
       {
         "Name": "客制化权限导入",
