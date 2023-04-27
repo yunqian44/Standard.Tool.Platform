@@ -20,6 +20,14 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+  
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'sonarqubetestpro'
+    scannerMode: 'MSBuild'
+    projectKey: 'AllenMaster_NetCore_WPF_Sample'
+    projectName: 'NetCore_WPF_Sample'
 
 - task: VSBuild@1
   inputs:
@@ -54,3 +62,9 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
