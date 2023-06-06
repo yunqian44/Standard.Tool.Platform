@@ -107,7 +107,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <CheckBox Name="ckbItem" Style="{StaticResource gridCheckBox}" IsChecked="{Binding IsCheckBinding,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                            <CheckBox Name="ckbItem" Style="{StaticResource gridCheckBox}" IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
