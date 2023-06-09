@@ -10,6 +10,13 @@ using Standard.Tool.Platform.Common.Extension;
 using MaterialCore = Standard.Tool.Platform.Materials;
 using System.Threading.Tasks;
 using Standard.Tool.Platform.Auth.AccountFeature;
+using Standard.Tool.Platform.Library;
+using Standard.Tool.Platform.Library.Enums;
+using Standard.Tool.Platform.UserControls.Toast;
+using System.Windows;
+using Standard.Tool.Platform.Data.Import;
+using System.Linq;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Standard.Tool.Platform.Pages.Project.Application.Material
 {
@@ -51,7 +58,7 @@ namespace Standard.Tool.Platform.Pages.Project.Application.Material
             Task.Run(async
             () =>
             {
-                var exportResult = await _mediator.Send(new ExportMaterialDataCommand());
+                //var exportResult = await _mediator.Send(new ExportMaterialDataCommand());
             });
         }
 
@@ -71,6 +78,11 @@ namespace Standard.Tool.Platform.Pages.Project.Application.Material
         {
             var materiallist = _readTableService.ReadExcel().DataSetToList<MaterialCore.Material>();
             MaterialDataTable = new ObservableCollection<MaterialCore.Material>(materiallist);
+
+            if (materiallist.Any())
+            {
+                ToastControlNotification.Show("加载完毕", new ToastOptions { Icon = EnumToastType.Information, Location = EnumToastLocation.OwnerCenter, Time = 2000 });
+            }   
         }
 
         bool CanImportExecute()
@@ -93,6 +105,15 @@ namespace Standard.Tool.Platform.Pages.Project.Application.Material
                 Task.Run(async () =>
                 {
                     var exportResult = await _mediator.Send(new CreateMaterialDataCommand(request));
+
+                    if (exportResult.Succeeded)
+                    {
+                        ToastControlNotification.Show("保存成功", new ToastOptions { Icon = EnumToastType.Information, Location = EnumToastLocation.OwnerCenter, Time = 2000 });
+                    }
+                    else {
+                        ToastControlNotification.Show("保存失败", new ToastOptions { Icon = EnumToastType.Information, Location = EnumToastLocation.OwnerCenter, Time = 2000 });
+                    }
+
                 });
             }
         }
@@ -105,6 +126,40 @@ namespace Standard.Tool.Platform.Pages.Project.Application.Material
         public ICommand Save
         {
             get { return new RelayCommand(SaveExecute, CanSaveExecute); }
+        }
+        #endregion 
+
+        #region 04，ImportData
+        void ImportDataExecute()
+        {
+            var request = new EditMaterialRequest(MaterialDataTable);
+            if (request.IsValid())
+            {
+                Task.Run(async () =>
+                {
+                    var exportResult = await _mediator.Send(new ImportMaterialDataCommand(request));
+
+                    if (exportResult.Succeeded)
+                    {
+                        ToastControlNotification.Show("保存成功", new ToastOptions { Icon = EnumToastType.Information, Location = EnumToastLocation.OwnerCenter, Time = 2000 });
+                    }
+                    else
+                    {
+                        ToastControlNotification.Show("保存失败", new ToastOptions { Icon = EnumToastType.Information, Location = EnumToastLocation.OwnerCenter, Time = 2000 });
+                    }
+
+                });
+            }
+        }
+
+        bool CanImportDataExecute()
+        {
+            return true;
+        }
+
+        public ICommand ImportData
+        {
+            get { return new RelayCommand(ImportDataExecute, CanImportDataExecute); }
         }
         #endregion 
 
