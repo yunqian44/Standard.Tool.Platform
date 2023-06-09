@@ -10,47 +10,38 @@ using System.Threading.Tasks;
 
 namespace Standard.Tool.Platform.Data.Infrastructure
 {
-    public interface IOrcaleRepository<T> where T : class
+    public interface IOracleRepository<TEntity> where TEntity : class
     {
-        Task CreateDBAsync(CancellationToken ct = default);
-        Task Clear(CancellationToken ct = default);
+        Task<TEntity> QueryById(object objId);
+        Task<TEntity> QueryById(object objId, bool blnUseCache = false);
+        Task<List<TEntity>> QueryByIDs(object[] lstIds);
 
-        ValueTask<T> GetAsync(object key, CancellationToken ct = default);
+        Task<int> Add(TEntity model);
 
-        Task<T> GetAsync(Expression<Func<T, bool>> condition);
+        Task<int> Add(List<TEntity> listEntity);
 
-        Task<IReadOnlyList<T>> ListAsync(CancellationToken ct = default);
+        int AddList(List<TEntity> listEntity);
 
-        IQueryable<T> AsQueryable();
+        Task<bool> DeleteById(object id);
 
-        Task<int> DeleteAsync(T entity, CancellationToken ct = default);
+        Task<bool> Delete(TEntity model);
 
-        Task<int> DeleteAsync(CancellationToken ct = default);
+        Task<bool> DeleteByIds(object[] ids);
 
-        Task DeleteAsync(IEnumerable<T> entities, CancellationToken ct = default);
+        Task<bool> Update(TEntity model);
+        Task<bool> Update(TEntity entity, string strWhere);
+        Task<bool> Update(object operateAnonymousObjects);
 
-        Task<int> DeleteAsync(object key, CancellationToken ct = default);
+        Task<bool> Update(TEntity entity, List<string> lstColumns = null, List<string> lstIgnoreColumns = null, string strWhere = "");
 
-        Task<int> CountAsync(ISpecification<T> spec = null, CancellationToken ct = default);
+        Task<List<TEntity>> Query();
+        Task<List<TEntity>> Query(string strWhere);
+        Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression);
+        Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression, string strOrderByFileds);
+        Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression, Expression<Func<TEntity, object>> orderByExpression, bool isAsc = true);
+        Task<List<TEntity>> Query(string strWhere, string strOrderByFileds);
 
-        Task<int> CountAsync(Expression<Func<T, bool>> condition, CancellationToken ct = default);
-
-        Task<bool> AnyAsync(Expression<Func<T, bool>> condition = null, CancellationToken ct = default);
-
-        Task<IList<TResult>> SelectAsync<TResult>(Expression<Func<T, TResult>> selector, CancellationToken ct = default);
-
-        Task<IList<TResult>> SelectAsync<TResult>(ISpecification<T> spec, Expression<Func<T, TResult>> selector);
-
-        Task<TResult> FirstOrDefaultAsync<TResult>(ISpecification<T> spec, Expression<Func<T, TResult>> selector);
-
-        IList<TResult> Select<TResult>(Expression<Func<T, TResult>> selector);
-
-        Task<T> AddAsync(T entity, CancellationToken ct = default);
-
-        Task<int> UpdateAsync(T entity, CancellationToken ct = default);
-
-        int Update(T entity);
-
-        Task<int> AddRangeAsync(IEnumerable<T> entity);
+        Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression, int intTop, string strOrderByFileds);
+        Task<List<TEntity>> Query(string strWhere, int intTop, string strOrderByFileds);
     }
 }
