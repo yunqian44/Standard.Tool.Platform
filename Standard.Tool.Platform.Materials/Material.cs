@@ -1,4 +1,4 @@
-﻿using Standard.Tool.Platform.Data.Entities;
+﻿using Standard.Tool.Platform.Data.Entities.Project;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,7 +54,7 @@ namespace Standard.Tool.Platform.Materials
         public string? STATUTENTREE { get; set; }
 
         //有效期, 由接口写入
-        public int?   DUREEVALIDITE { get; set; }
+        public int   DUREEVALIDITE { get; set; }
         //有效期单位 J代表天,M代表月由接口写入
         public string? UNITEVALIDITE { get; set; }
 
@@ -70,6 +70,7 @@ namespace Standard.Tool.Platform.Materials
 
         //开启有效期
         public int? PEREMPT_DELAY { get; set; }
+
         //开启有效期单位 D代表天,M代表月
         public string? PEREMPT_UNIT { get; set; }
 
@@ -86,25 +87,28 @@ namespace Standard.Tool.Platform.Materials
 
         //扩展字段
         public string? Alpha1 { get; set; }
-        public double? Number1 { get; set; }
+        public double Number1 { get; set; }
 
         public string? Alpha2 { get; set; }
-        public double? Number2 { get; set; }
+        public double Number2 { get; set; }
 
         public string? Alpha3 { get; set; }
-        public double? Number3 { get; set; }
+        public double Number3 { get; set; }
 
         public string? Alpha4 { get; set; }
-        public double? Number4 { get; set; }
+        public double Number4 { get; set; }
 
         public string? Alpha5 { get; set; }
-        public double? Number5 { get; set; }
+        public double Number5 { get; set; }
 
         public string? Alpha6 { get; set; }
-        public double? Number6 { get; set; }
+        public double Number6 { get; set; }
 
         public string? Alpha7 { get; set; }
-        public double? Number7 { get; set; }
+        public double Number7 { get; set; }
+
+        public string? Alpha8 { get; set; }
+        public double Number8 { get; set; }
 
 
         public Material()
