@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Standard.Tool.Platform.Common.Helper;
-using Standard.Tool.Platform.Data.Entities;
+using Standard.Tool.Platform.Data.Entities.Project;
 using Standard.Tool.Platform.Data.Import;
 using Standard.Tool.Platform.Data.Infrastructure;
 using System.Linq;

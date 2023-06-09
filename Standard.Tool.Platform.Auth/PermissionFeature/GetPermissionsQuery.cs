@@ -19,10 +19,19 @@ public record GetPermissionsQuery : IRequest<IList<Permission>>
     public int PageSize { get; set; }
     public int PageIndex { get; set; }
 
-    public GetPermissionsQuery(int pageIndex, int pageSize)
+    public string PermissionCode { get; set; }
+
+    public string PermissionName { get; set; }
+
+    public string Status { get; set; }
+
+    public GetPermissionsQuery(int pageIndex, int pageSize,string permissionCode,string permissionName,string status)
     {
         PageSize = pageSize;
         PageIndex = pageIndex;
+        PermissionCode= permissionCode;
+        PermissionName= permissionName;
+        Status= status;
     }
 }
 
@@ -46,7 +55,7 @@ public class GetPermissionsQueryHandler : IRequestHandler<GetPermissionsQuery, I
                 $"{nameof(request.PageIndex)} can not be less than 1, current value: {request.PageIndex}.");
         }
 
-        var spec = new PermissionPagingSpec(request.PageSize, request.PageIndex);
+        var spec = new PermissionPagingSpec(request.PageSize, request.PageIndex,request.PermissionCode,request.PermissionName,request.Status);
         return await _repo.SelectAsync(spec, Permission.EntitySelector);
 
         #region 暂时注释

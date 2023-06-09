@@ -136,7 +136,6 @@ namespace Standard.Tool.Platform.Pages.Permission
             }
         }
         #endregion
-
         #endregion
 
         #region Method
@@ -148,7 +147,7 @@ namespace Standard.Tool.Platform.Pages.Permission
             PermissionCode = string.Empty;
 
             var statusData = new List<StatusValue>();
-            statusData.Add(new StatusValue() { Name = "==请选择==", Value = "" });
+            statusData.Add(new StatusValue() { Name = "==请选择==", Value = null });
             statusData.Add(new StatusValue() { Name = "启用", Value = "Enable" });
             statusData.Add(new StatusValue() { Name = "禁用", Value = "Disable" });
 
@@ -179,7 +178,7 @@ namespace Standard.Tool.Platform.Pages.Permission
 
                 TotalCount = await _mediator.Send(new CountPermissionsQuery());
 
-                dataList = await _mediator.Send(new GetPermissionsQuery(PageIndex,PageSize));
+                dataList = await _mediator.Send(new GetPermissionsQuery(PageIndex,PageSize,PermissionCode,PermissionName,Status.Value));
 
                 if (dataList != null)
                     PermissionList = new ObservableCollection<PermissionCore.Permission>(dataList);

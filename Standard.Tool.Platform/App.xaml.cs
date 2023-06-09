@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows;
 using Standard.Tool.Platform.Data.Infrastructure;
 using Standard.Tool.Platform.PostgreSql;
+using Standard.Tool.Platform.Oracle;
 using Standard.Tool.Platform.Data.Infrastructure.Services;
 using MediatR;
 using Standard.Tool.Platform.CommonPage;
@@ -34,7 +35,7 @@ public partial class App : Application
         var host = await hostbuilder.StartAsync();
         ProviderFactory.ServiceProvider = host.Services;
         await host.InitStartUp();
-        host.Services.GetRequiredService<MainWindow>()?.Show();
+        host.Services.GetRequiredService<LoginPage>()?.Show();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args)
@@ -45,6 +46,7 @@ public partial class App : Application
 
         var configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).Add(new JsonConfigurationSource { Path = $"appsettings.json", Optional = false, ReloadOnChange = true }).Build();
         var connStr = configuration.GetConnectionString("Standard.Tool.Platform.Database");
+        var connOracleStr = configuration.GetConnectionString("Oracle");
 
         var hostBuilder = Host.CreateDefaultBuilder(args);
         hostBuilder.ConfigureServices((ctx, services) =>
@@ -52,7 +54,10 @@ public partial class App : Application
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             services.AddTransient<IReadTableService, ReadTableService>();
             services.AddSingleton(new TableDataHelper(AppDomain.CurrentDomain.BaseDirectory));
+
+            services.AddOracleStorage(connOracleStr);
             services.AddPostgreSqlStorage(connStr);
+            
 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<AccountPage>();

@@ -8,7 +8,6 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
         MouseLeftButtonDown="WindowMain_MouseLeftButtonDown"
         WindowStyle="None"
         AllowsTransparency="True"
