@@ -1,16 +1,10 @@
 ﻿using MediatR;
 using Standard.Tool.Platform.Auth.AccountFeature;
 using Standard.Tool.Platform.Auth.PermissionFeature;
-using Standard.Tool.Platform.Common.Helper;
-using Standard.Tool.Platform.CommonPage;
 using Standard.Tool.Platform.MVVM;
-using Standard.Tool.Platform.Pages.Account;
-using Standard.Tool.Platform.UserControls;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PermissionCore = Standard.Tool.Platform.Auth.PermissionFeature;
@@ -176,7 +170,7 @@ namespace Standard.Tool.Platform.Pages.Permission
                 () =>
             {
 
-                TotalCount = await _mediator.Send(new CountPermissionsQuery());
+                TotalCount = await _mediator.Send(new CountPermissionsQuery(PermissionCode, PermissionName, Status.Value));
 
                 dataList = await _mediator.Send(new GetPermissionsQuery(PageIndex,PageSize,PermissionCode,PermissionName,Status.Value));
 
