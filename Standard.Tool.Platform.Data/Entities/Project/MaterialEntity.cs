@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using SqlSugar;
+﻿using SqlSugar;
 using Standard.Tool.Platform.Common.AttributeEx;
 
 namespace Standard.Tool.Platform.Data.Entities.Project;

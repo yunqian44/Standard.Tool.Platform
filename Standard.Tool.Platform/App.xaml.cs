@@ -35,7 +35,7 @@ public partial class App : Application
         var host = await hostbuilder.StartAsync();
         ProviderFactory.ServiceProvider = host.Services;
         await host.InitStartUp();
-        host.Services.GetRequiredService<LoginPage>()?.Show();
+        host.Services.GetRequiredService<MainWindow>()?.Show();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args)
@@ -51,7 +51,7 @@ public partial class App : Application
         var hostBuilder = Host.CreateDefaultBuilder(args);
         hostBuilder.ConfigureServices((ctx, services) =>
         {
-            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMediatR(config => config.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddTransient<IReadTableService, ReadTableService>();
             services.AddSingleton(new TableDataHelper(AppDomain.CurrentDomain.BaseDirectory));
 

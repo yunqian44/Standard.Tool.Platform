@@ -1,16 +1,13 @@
 ﻿using MediatR;
 using Standard.Tool.Platform.Data.Entities;
 using Standard.Tool.Platform.Data.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Standard.Tool.Platform.Data.Spec;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Standard.Tool.Platform.Auth.PermissionFeature;
 
-public record CountPermissionsQuery : IRequest<int>;
+public record CountPermissionsQuery(string code,string name,string status) : IRequest<int>;
 
 public class CountPermissionsQueryHandler : IRequestHandler<CountPermissionsQuery, int>
 {
@@ -18,5 +15,11 @@ public class CountPermissionsQueryHandler : IRequestHandler<CountPermissionsQuer
 
     public CountPermissionsQueryHandler(IRepository<PermissionEntity> repo) => _repo = repo;
 
-    public Task<int> Handle(CountPermissionsQuery request, CancellationToken ct) => _repo.CountAsync(ct: ct);
+    public async Task<int> Handle(CountPermissionsQuery request, CancellationToken ct)
+    {
+        int count = 0;
+        var spec = new PermissionSpec(request.code, request.name, request.status);
+        count= await _repo.CountAsync(spec);
+        return count;
+    }
 }

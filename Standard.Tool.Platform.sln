@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{5609
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standard.Tool.Platform.Oracle", "Standard.Tool.Platform.Oracle\Standard.Tool.Platform.Oracle.csproj", "{9FC15FAB-76E8-4351-916C-115FF30E9F2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Tool.Platform.Locations", "Standard.Tool.Platform.Locations\Standard.Tool.Platform.Locations.csproj", "{EB28E02B-7027-4C0E-8E3A-DFE089708F75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{9FC15FAB-76E8-4351-916C-115FF30E9F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FC15FAB-76E8-4351-916C-115FF30E9F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FC15FAB-76E8-4351-916C-115FF30E9F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB28E02B-7027-4C0E-8E3A-DFE089708F75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB28E02B-7027-4C0E-8E3A-DFE089708F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB28E02B-7027-4C0E-8E3A-DFE089708F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB28E02B-7027-4C0E-8E3A-DFE089708F75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{4A6E3E81-6397-4CA6-9503-E9EDAEF0428C} = {C9F1EFCF-5F9D-46C7-80C6-0DFF3298A168}
 		{4DBF73E0-B19A-4121-86D3-28E2B88F562D} = {56095175-F974-4088-AD01-F7EC70496982}
 		{9FC15FAB-76E8-4351-916C-115FF30E9F2A} = {61403449-FCEA-404D-B35D-CF4AE65DD95D}
+		{EB28E02B-7027-4C0E-8E3A-DFE089708F75} = {C9F1EFCF-5F9D-46C7-80C6-0DFF3298A168}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {184CE8A4-D622-4C2C-AB83-C823571980B1}
