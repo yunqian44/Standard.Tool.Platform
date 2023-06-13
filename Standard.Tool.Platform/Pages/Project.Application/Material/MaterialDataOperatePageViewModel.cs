@@ -17,6 +17,8 @@ using System.Windows;
 using Standard.Tool.Platform.Data.Import;
 using System.Linq;
 using Org.BouncyCastle.Asn1.Ocsp;
+using Standard.Tool.Platform.Auth.PermissionFeature;
+using Standard.Tool.Platform.Pages.Account;
 
 namespace Standard.Tool.Platform.Pages.Project.Application.Material
 {
@@ -43,6 +45,72 @@ namespace Standard.Tool.Platform.Pages.Project.Application.Material
             {
                 _materialDataTable = value;
                 RaisePropertyChanged(nameof(MaterialDataTable));
+            }
+        }
+        #endregion
+
+        #region PageIndex
+        private int _pageIndex;
+        public int PageIndex
+        {
+            get { return _pageIndex; }
+            set
+            {
+                _pageIndex = value;
+                RaisePropertyChanged(nameof(PageIndex));
+                SearchExecute();
+            }
+        }
+        #endregion
+
+        #region PageSize
+        private int _pageSize;
+        public int PageSize
+        {
+            get { return _pageSize; }
+            set
+            {
+                _pageSize = value;
+                RaisePropertyChanged(nameof(PageSize));
+            }
+        }
+        #endregion
+
+        #region TotalCount
+        private int _totalCount;
+        public int TotalCount
+        {
+            get { return _totalCount; }
+            set
+            {
+                _totalCount = value;
+                RaisePropertyChanged(nameof(TotalCount));
+            }
+        }
+        #endregion
+
+        #region ItemCode
+        private string _itemCode;
+        public string ItemCode
+        {
+            get { return _itemCode; }
+            set
+            {
+                _itemCode = value;
+                RaisePropertyChanged(nameof(ItemCode));
+            }
+        }
+        #endregion
+
+        #region ItemName
+        private string _itemName;
+        public string ItemName
+        {
+            get { return _itemName; }
+            set
+            {
+                _itemName = value;
+                RaisePropertyChanged(nameof(ItemName));
             }
         }
         #endregion
@@ -162,6 +230,41 @@ namespace Standard.Tool.Platform.Pages.Project.Application.Material
             get { return new RelayCommand(ImportDataExecute, CanImportDataExecute); }
         }
         #endregion 
+
+        #region 05，Search
+        void SearchExecute()
+        {
+            IEnumerable<MaterialCore.Material> dataList = null;
+            Task.Run(async
+                () =>
+            {
+                if (MaterialDataTable.Any())
+                {
+
+                    TotalCount = MaterialDataTable.Where(p =>
+                    (null == ItemCode || p.DESIGNLONGUE.Contains(ItemCode))
+                    && (null == ItemName || p.DESIGNLONGUE.Contains(ItemName))).Count();
+
+                    dataList= MaterialDataTable.Where(p => 
+                    (null == ItemCode || p.DESIGNLONGUE.Contains(ItemCode))
+                    && (null == ItemName || p.DESIGNLONGUE.Contains(ItemName)))
+                    .Skip((PageIndex-1)* PageSize).Take(PageSize);
+
+                    MaterialDataTable = new ObservableCollection<MaterialCore.Material>(dataList);
+                }
+            });
+        }
+
+        bool CanSearchExecute()
+        {
+            return true;
+        }
+
+        public ICommand Search
+        {
+            get { return new RelayCommand(SearchExecute, CanSearchExecute); }
+        }
+        #endregion
 
         #endregion
 
