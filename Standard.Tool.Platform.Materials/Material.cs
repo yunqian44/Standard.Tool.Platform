@@ -16,6 +16,7 @@ namespace Standard.Tool.Platform.Materials
 
         [Description("是否选中")]
         public bool IsSelected { get; set; }
+
         /// <summary>
         /// 物料编码
         /// </summary>
