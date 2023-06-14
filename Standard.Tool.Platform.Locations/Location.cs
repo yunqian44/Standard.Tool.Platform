@@ -8,14 +8,16 @@ namespace Standard.Tool.Platform.Locations
         [Description("ĞòºÅ")]
         public int No { get; set; }
 
-
         [Description("ÊÇ·ñÑ¡ÖĞ")]
         public bool IsSelected { get; set; }
 
-        [Description("±àÂë")]
+        [Description("²Ö¿â±àÂë")]
+        public string Site { get; set; }
+
+        [Description("Î»ÖÃ±àÂë")]
         public string CodeEmpl { get; set; }
 
-        [Description("Ãû³Æ")]
+        [Description("Î»ÖÃÃû³Æ")]
         public string LibEmpl { get; set; }
 
         public string EntitesStockees { get; set; }
