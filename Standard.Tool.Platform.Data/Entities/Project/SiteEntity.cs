@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace Standard.Tool.Platform.Data.Entities.Project
 {
-    [SugarTable("XTAB_DEMO")]
-    public class Demo
+    [SugarTable("XFP_SITES")]
+    public class SiteEntity
     {
         [SugarColumn(IsPrimaryKey = true)] //设置主键
-        public string DemoName { get; set; }
-
-        public string DemoValue { get; set; }
+        public string SiteName { get; set; }
     }
 }
