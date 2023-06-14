@@ -253,7 +253,7 @@ namespace Standard.Tool.Platform.Pages.Account
         #endregion
 
         #region 04，AccountPermission
-        public async void QueryAccountById(string userId)
+        public async Task QueryAccountById(string userId)
         {
             await Task.Run(async
                  () =>

@@ -105,7 +105,7 @@
                         CellStyle="{DynamicResource DataGridCellStyle1}"
                         ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                         RowStyle="{DynamicResource DataGridRowStyle1}"
-                        IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding MaterialDataTable}">
+                        IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding LocationDataTable}">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="选择" Width="80">
                                 <!--列头模板-->
@@ -127,19 +127,15 @@
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Header="序号" Binding="{Binding No}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="地点" Binding="{Binding CODEART}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="位置" Binding="{Binding CodeEmpl}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="仓库" Binding="{Binding DESIGNPRINCIPALE}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="仓库" Binding="{Binding Site}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="位置" Binding="{Binding DESIGNLONGUE}"  ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="位置名称" Binding="{Binding LibEmpl}"  ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="位置名称" Binding="{Binding CLASSEARTICLE}"  ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="类型" Binding="{Binding TypEntites}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
                                     true" CanUserResize="False" />
-                            <DataGridTextColumn Header="类型" Binding="{Binding UNITESTOCK}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
-                                    true" CanUserResize="False" />
-                            <DataGridTextColumn Header="散货存储" Binding="{Binding UNITESTOCK}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
-                                    true" CanUserResize="False" />
-                            <DataGridTextColumn Header="时间" Binding="{Binding UNITESTOCK}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
+                            <DataGridTextColumn Header="散货存储" Binding="{Binding StockMasse}" ElementStyle="{StaticResource CenterAlignmentStyle}" IsReadOnly="
                                     true" CanUserResize="False" />
                             <DataGridTemplateColumn Header="操作" IsReadOnly="True" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
