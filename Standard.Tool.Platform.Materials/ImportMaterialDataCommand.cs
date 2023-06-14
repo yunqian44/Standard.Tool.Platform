@@ -18,15 +18,15 @@ namespace Standard.Tool.Platform.Materials
     {
         private readonly IOracleRepository<MaterialEntity> _repo;
 
-        private readonly IOracleRepository<Demo> _repoDemo;
+        //private readonly IOracleRepository<Demo> _repoDemo;
 
-        //public ImportDataCommandHandler(IOracleRepository<MaterialEntity> repo) => _repo = repo;
+        //public ImportDataCommandHandler(IOracleRepository<MaterialEntity> repo,
+        //    IOracleRepository<Demo> repoDemo) {
+        //    _repo = repo;
+        //    _repoDemo = repoDemo;
+        //} 
 
-        public ImportDataCommandHandler(IOracleRepository<MaterialEntity> repo,
-            IOracleRepository<Demo> repoDemo) {
-            _repo = repo;
-            _repoDemo = repoDemo;
-        } 
+        public ImportDataCommandHandler(IOracleRepository<MaterialEntity> repo) => _repo = repo;
 
         public async Task<ImportResult> Handle(ImportMaterialDataCommand request, CancellationToken ct)
         {
