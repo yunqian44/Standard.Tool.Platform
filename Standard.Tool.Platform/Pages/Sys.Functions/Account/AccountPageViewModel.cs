@@ -167,8 +167,5 @@ public class AccountPageViewModel : ObservableObject
     }
     #endregion
 
-
-
-
     #endregion
 }
